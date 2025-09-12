@@ -30,7 +30,7 @@ A common reason for this is that one or a few test results in the batch being se
 
 The reporter uses this public API endpoint to push results into Qase: 
 
-POST [https://api.qase.io/v1/result/{code}/{id}/bulk](https://developers.qase.io/reference/create-result-bulk)
+POST [https://api.qase.io/v1/result/\{code}/\{id}/bulk](https://developers.qase.io/reference/create-result-bulk)
 
 This endpoint allows up to 2000 test results to be sent in a single API request, though we recommend a batch size of 100–400 for optimal performance. By default, the Qase reporter is set to a batch size of 200. This means it collects up to 200 test results, groups them together, and sends them in one API call to Qase.
 
@@ -100,7 +100,7 @@ If your CI logs show 27 tests (e.g., 20 passed, 7 failed) but Qase shows zero, i
 
 To isolate problematic test results, set the batch size to 1. This makes the reporter send each test result in its own API request, so a single bad result won't block the entire batch. 
 
-You can set the batch size in the same way:  
+You can set the batch size in the same way:\
 Environment Variable: Set `QASE_TESTOPS_BATCH_SIZE=1` in your CI workflow, like this:
 
 ```
@@ -128,7 +128,7 @@ If setting the batch size to 1 gets results showing in Qase, compare the number 
 
 For example:
 
-**CI logs**: 27 tests (20 passed, 7 failed).  
+**CI logs**: 27 tests (20 passed, 7 failed).\
 **Qase**: 25 tests (18 passed, 7 failed).
 
 A difference (e.g., 2 missing tests) suggests that specific test results are being rejected by the Qase API. 
@@ -160,19 +160,19 @@ For any problematic tests identified, examine the result payload for any apparen
 
 To help us resolve your issue quickly, please provide the following details in your initial message:
 
-- **Plugins and Packages**: Let us know about any additional plugins or packages in your CI pipeline, such as `pytest-xdist` (used for parallel test execution), as they can sometimes affect the Qase reporter’s logging or result aggregation.
+* **Plugins and Packages**: Let us know about any additional plugins or packages in your CI pipeline, such as `pytest-xdist` (used for parallel test execution), as they can sometimes affect the Qase reporter’s logging or result aggregation.
 
 <br />
 
-- **Configuration Files**: Share relevant configuration files, such as `qase.config.jso` or your CI workflow file (e.g., `.github/workflows/workflow.yml`). If your setup involves complex workflows, nested triggers, or anything unconventional, including these files will help us understand your environment.
+* **Configuration Files**: Share relevant configuration files, such as `qase.config.jso` or your CI workflow file (e.g., `.github/workflows/workflow.yml`). If your setup involves complex workflows, nested triggers, or anything unconventional, including these files will help us understand your environment.
 
 <br />
 
-- **Debug Logs and Screenshots**: Include all debug logs (generated with `QASE_DEBUG=true`), screenshots of the test result statistics from your CI pipeline, and a public link to the affected Qase test run (e.g., `https://app.qase.io/run/<project-code>/dashboard/<run-id>`).
+* **Debug Logs and Screenshots**: Include all debug logs (generated with `QASE_DEBUG=true`), screenshots of the test result statistics from your CI pipeline, and a public link to the affected Qase test run (e.g., `https://app.qase.io/run/<project-code>/dashboard/<run-id>`).
 
 <br />
 
-- **Recent Changes**: Mention any recent updates to dependencies, CI configurations, or other changes in your setup that might impact the Qase reporter’s behavior.
+* **Recent Changes**: Mention any recent updates to dependencies, CI configurations, or other changes in your setup that might impact the Qase reporter’s behavior.
 
 <br />
 
