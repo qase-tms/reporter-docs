@@ -19,7 +19,7 @@ The configuration system uses a priority hierarchy where environment variables o
 
 _direct CLI options in the run command_ **> **_environment variables_** >** _options in config file_
 
-> The reporters look for the config file in your project's root directory. 
+> The reporters look for the config file in your project's root directory.
 
 <br />
 
