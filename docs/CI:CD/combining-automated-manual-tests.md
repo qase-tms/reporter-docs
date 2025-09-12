@@ -38,12 +38,12 @@ Think of it like this: instead of hunting down test cases one by one for every t
 
 When you link a Test Plan to your automated test reporter, here’s what changes:
 
-- The reporter still creates the test run automatically.
-- But now, it uses your predefined test plan to do so.
-- All test cases from the plan — both manual and automated — are included in the run.
-- Automated results are marked as executed.
-- Manual test cases remain open with “Untested” status.
-- The run stays open until your team manually completes it.
+* The reporter still creates the test run automatically.
+* But now, it uses your predefined test plan to do so.
+* All test cases from the plan — both manual and automated — are included in the run.
+* Automated results are marked as executed.
+* Manual test cases remain open with “Untested” status.
+* The run stays open until your team manually completes it.
 
 Everything happens in one place!
 
@@ -55,9 +55,9 @@ Everything happens in one place!
 
 First, go to your Qase project and create a Test Plan:
 
-- Add all the relevant test cases you want to cover — both automated and manual.
-- Assign your team members for the manual cases, if needed.
-- Save the plan and [note the Test Plan ID](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code?location=conversation#h_d016877ffb) (you’ll need this in the next step).
+* Add all the relevant test cases you want to cover — both automated and manual.
+* Assign your team members for the manual cases, if needed.
+* Save the plan and [note the Test Plan ID](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code?location=conversation#h_d016877ffb) (you’ll need this in the next step).
 
 <br />
 
@@ -83,7 +83,7 @@ You can also specify the option in the `qase.config.json` file under `testops.pl
 
 Once configured:
 
-- The reporter creates a new test run from the test plan.
-- All cases from the plan are included in the test run and they'll be in the untested status. If any of the test cases in the plan have parameters, the resulting test run will contain all possible combinations of the parameter values.
-- Automated tests are marked as passed/failed based on execution results.
-- Manual tests will still remain untested, so your team can jump in, update results, and eventually close the run.
+* The reporter creates a new test run from the test plan.
+* All cases from the plan are included in the test run and they'll be in the untested status. If any of the test cases in the plan have parameters, the resulting test run will contain all possible combinations of the parameter values.
+* Automated tests are marked as passed/failed based on execution results.
+* Manual tests will still remain untested, so your team can jump in, update results, and eventually close the run.
