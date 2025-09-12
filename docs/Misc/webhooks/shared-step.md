@@ -35,12 +35,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new shared step is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new shared step is created.
 
 ### Event name
 
@@ -48,11 +44,11 @@ Payload example:
 
 ### Payload fields
 
-| Parameter       | Type   | Description                 |
-|-----------------|--------|-----------------------------|
-| hash            | string | Shared step hash            |
-| steps     | array  | An array of steps|
-| data            | string | Shared step data            |
+| Parameter | Type   | Description       |
+| --------- | ------ | ----------------- |
+| hash      | string | Shared step hash  |
+| steps     | array  | An array of steps |
+| data      | string | Shared step data  |
 
 ## Deleted Shared Step
 
@@ -69,12 +65,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a shared_step is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a shared\_step is deleted.
 
 ### Event name
 
@@ -83,7 +75,7 @@ Payload example:
 ### Payload fields
 
 | Parameter | Type   | Description      |
-|-----------|--------|------------------|
+| --------- | ------ | ---------------- |
 | hash      | string | Shared step hash |
 
 ## Updated Shared Step
@@ -101,12 +93,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a shared step is updated."
-}
-[/block]
+
+> 📘 This event is being sent when a shared step is updated.
 
 ### Event name
 
@@ -115,5 +103,5 @@ Payload example:
 ### Payload fields
 
 | Parameter | Type   | Description      |
-|-----------|--------|------------------|
+| --------- | ------ | ---------------- |
 | id        | string | Shared step hash |
