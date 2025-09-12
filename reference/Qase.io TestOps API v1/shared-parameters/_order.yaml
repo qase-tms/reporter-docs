@@ -2,3 +2,4 @@
 - create-shared-parameter
 - get-shared-parameter
 - update-shared-parameter
+- delete-shared-parameter
