@@ -29,12 +29,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new test suite is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new test suite is created.
 
 ### Event name
 
@@ -42,13 +38,13 @@ Payload example:
 
 ### Payload fields
 
-| Parameter     | Type   | Description              |
-|---------------|--------|--------------------------|
-| id            | integer    | Test suite ID            |
-| title         | string | Test suite title         |
-| description   | string | Test suite description   |
-| preconditions | string | Test suite preconditions |
-| parent_id     | integer    | ID of parent test suite  |
+| Parameter     | Type    | Description              |
+| ------------- | ------- | ------------------------ |
+| id            | integer | Test suite ID            |
+| title         | string  | Test suite title         |
+| description   | string  | Test suite description   |
+| preconditions | string  | Test suite preconditions |
+| parent\_id    | integer | ID of parent test suite  |
 
 ## Cloned Test Suite
 
@@ -66,12 +62,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test suite is cloned."
-}
-[/block]
+
+> 📘 This event is being sent when a test suite is cloned.
 
 ### Event name
 
@@ -79,10 +71,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description              |
-|-----------|------|--------------------------|
-| id        | integer  | Test suite ID (clone)    |
-| from_id   | integer  | Test suite ID (original) |
+| Parameter | Type    | Description              |
+| --------- | ------- | ------------------------ |
+| id        | integer | Test suite ID (clone)    |
+| from\_id  | integer | Test suite ID (original) |
 
 ## Deleted Test Suite
 
@@ -99,12 +91,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test suite is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a test suite is deleted.
 
 ### Event name
 
@@ -112,9 +100,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description   |
-|-----------|------|---------------|
-| id        | integer  | Test suite ID |
+| Parameter | Type    | Description   |
+| --------- | ------- | ------------- |
+| id        | integer | Test suite ID |
 
 ## Updated Test Suite
 
@@ -131,12 +119,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test suite is updated. It returns only ID of test suite and notifies that fields were updated."
-}
-[/block]
+
+> 📘 This event is being sent when a test suite is updated. It returns only ID of test suite and notifies that fields were updated.
 
 ### Event name
 
@@ -144,6 +128,6 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description   |
-|-----------|------|---------------|
-| id        | integer  | Test suite ID |
+| Parameter | Type    | Description   |
+| --------- | ------- | ------------- |
+| id        | integer | Test suite ID |
