@@ -53,7 +53,7 @@ At the very least, the reporter will need three variables defined — the mode, 
 
 Qase Testcafe reporter can be configured in multiple ways:
 
-using a separate config file `qase.config.json`,  
+using a separate config file `qase.config.json`,\
 using environment variables (they override the values from the configuration files).
 
 You can configure the reporter options in a separate file `qase.config.json`, placed in the root directory of your project.
