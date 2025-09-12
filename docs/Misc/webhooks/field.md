@@ -33,12 +33,11 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new custom field is created."
-}
-[/block]
+
+<div>
+  <strong>info</strong>
+  <p>This event is being sent when a new custom field is created.</p>
+</div>
 
 ### Event name
 
@@ -81,12 +80,11 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a custom field is deleted."
-}
-[/block]
+
+<div>
+  <strong>info</strong>
+  <p>This event is being sent when a custom field is deleted.</p>
+</div>
 
 ### Event name
 
@@ -129,12 +127,11 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a custom field is updated."
-}
-[/block]
+
+<div>
+  <strong>info</strong>
+  <p>This event is being sent when a custom field is updated.</p>
+</div>
 
 ### Event name
 
