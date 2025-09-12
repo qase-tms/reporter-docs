@@ -2,3 +2,4 @@
 - create-environment
 - get-environment
 - delete-environment
+- update-environment
