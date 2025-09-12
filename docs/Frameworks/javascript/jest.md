@@ -71,7 +71,7 @@ export default {
 };
 ```
 
-**The above example is using ** `ES Module` format, for a `CommonJS` version, click [here](https://rentry.co/2hw84pdn).
+**The above example is using** `ES Module` format, for a `CommonJS` version, click [here](https://rentry.co/2hw84pdn).
 
 Please refer to this article for guidance on how to find your Project code in Qase.
 
