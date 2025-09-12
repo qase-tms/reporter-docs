@@ -24,7 +24,7 @@ To integrate Qase into your project, follow these steps:
 
 ### Activate the Robot Framework App
 
-To activate the app, go to the ‘[Apps](https://app.qase.io/apps?app=robotframework-reporter)’ section in your workspace, and click on ‘**Activate**’.  
+To activate the app, go to the ‘[Apps](https://app.qase.io/apps?app=robotframework-reporter)’ section in your workspace, and click on ‘**Activate**’.\
 Switch to the ‘Access tokens’ tab, and create a new API token from here. Save the API token, as we’ll need it in the following steps.
 
 <br />
