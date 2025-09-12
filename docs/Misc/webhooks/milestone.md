@@ -27,12 +27,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new milestone is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new milestone is created.
 
 ### Event name
 
@@ -40,11 +36,11 @@ Payload example:
 
 ### Payload fields
 
-| Parameter   | Type   | Description           |
-|-------------|--------|-----------------------|
-| id          | integer    | Milestone ID          |
-| title       | string | Milestone title       |
-| description | string | Milestone description |
+| Parameter   | Type    | Description           |
+| ----------- | ------- | --------------------- |
+| id          | integer | Milestone ID          |
+| title       | string  | Milestone title       |
+| description | string  | Milestone description |
 
 ## Deleted Milestone
 
@@ -61,12 +57,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a milestone is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a milestone is deleted.
 
 ### Event name
 
@@ -74,9 +66,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description  |
-|-----------|------|--------------|
-| id        | integer  | Milestone ID |
+| Parameter | Type    | Description  |
+| --------- | ------- | ------------ |
+| id        | integer | Milestone ID |
 
 ## Updated Milestone
 
@@ -93,12 +85,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a milestone is updated."
-}
-[/block]
+
+> 📘 This event is being sent when a milestone is updated.
 
 ### Event name
 
@@ -106,6 +94,6 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description  |
-|-----------|------|--------------|
-| id        | integer  | Milestone ID |
+| Parameter | Type    | Description  |
+| --------- | ------- | ------------ |
+| id        | integer | Milestone ID |
