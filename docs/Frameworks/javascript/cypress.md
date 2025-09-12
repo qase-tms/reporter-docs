@@ -90,7 +90,7 @@ module.exports = defineConfig({
 
 The above example is using ES Module format. For a CommonJS version, please copy the code from here
 
-If you already override before:run or after:run hooks in your cypress.config.js, configure your e2e section like this:  
+If you already override before:run or after:run hooks in your cypress.config.js, configure your e2e section like this:\
 Please refer to this article for guidance on how to find your Project code in Qase.
 
 ```javascript
