@@ -33,12 +33,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new test run is started."
-}
-[/block]
+
+> 📘 This event is being sent when a new test run is started.
 
 ### Event name
 
@@ -46,14 +42,14 @@ Payload example:
 
 ### Payload fields
 
-| Parameter   | Type   | Description                 |
-|-------------|--------|-----------------------------|
-| id          | integer    | Test run ID                 |
-| title       | string | Test run title              |
-| description | string | Test run description        |
-| plan        | object | Test plan ID and title.     |
-| cases_count | integer    | Amount of test cases in run |
-| environment | string | Environment slug. Nullable. |
+| Parameter    | Type    | Description                 |
+| ------------ | ------- | --------------------------- |
+| id           | integer | Test run ID                 |
+| title        | string  | Test run title              |
+| description  | string  | Test run description        |
+| plan         | object  | Test plan ID and title.     |
+| cases\_count | integer | Amount of test cases in run |
+| environment  | string  | Environment slug. Nullable. |
 
 ## Completed Test Run
 
@@ -75,12 +71,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test run is successfully completed."
-}
-[/block]
+
+> 📘 This event is being sent when a test run is successfully completed.
 
 ### Event name
 
@@ -88,14 +80,14 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description                   |
-|-----------|------|-------------------------------|
-| id        | integer  | Test run ID                   |
-| cases     | integer  | Amount of test cases in a run |
-| passed    | integer  | Amount of passed cases        |
-| failed    | integer  | Amount of failed cases        |
-| blocked   | integer  | Amount of blocked cases       |
-| duration  | integer  | Test run duration in seconds  |
+| Parameter | Type    | Description                   |
+| --------- | ------- | ----------------------------- |
+| id        | integer | Test run ID                   |
+| cases     | integer | Amount of test cases in a run |
+| passed    | integer | Amount of passed cases        |
+| failed    | integer | Amount of failed cases        |
+| blocked   | integer | Amount of blocked cases       |
+| duration  | integer | Test run duration in seconds  |
 
 ## Aborted Test Run
 
@@ -119,12 +111,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test run is aborted."
-}
-[/block]
+
+> 📘 This event is being sent when a test run is aborted.
 
 ### Event name
 
@@ -132,16 +120,16 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description                   |
-|-----------|------|-------------------------------|
-| id        | integer  | Test run ID                   |
-| cases     | integer  | Amount of test cases in a run |
-| passed    | integer  | Amount of passed cases        |
-| skiped    | integer  | Amount of skiped cases        |
-| failed    | integer  | Amount of failed cases        |
-| untested  | integer  | Amount of untested cases      |
-| blocked   | integer  | Amount of blocked cases       |
-| duration  | integer  | Test run duration in seconds  |
+| Parameter | Type    | Description                   |
+| --------- | ------- | ----------------------------- |
+| id        | integer | Test run ID                   |
+| cases     | integer | Amount of test cases in a run |
+| passed    | integer | Amount of passed cases        |
+| skiped    | integer | Amount of skiped cases        |
+| failed    | integer | Amount of failed cases        |
+| untested  | integer | Amount of untested cases      |
+| blocked   | integer | Amount of blocked cases       |
+| duration  | integer | Test run duration in seconds  |
 
 ## Deleted Test Run
 
@@ -158,12 +146,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test run is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a test run is deleted.
 
 ### Event name
 
@@ -171,9 +155,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| id        | integer  | Test run ID |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| id        | integer | Test run ID |
 
 ## Report visibility changed Test Run
 
@@ -191,12 +175,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a public report visibility has been changed."
-}
-[/block]
+
+> 📘 This event is being sent when a public report visibility has been changed.
 
 ### Event name
 
@@ -205,10 +185,9 @@ Payload example:
 ### Payload fields
 
 | Parameter | Type    | Description                                |
-|-----------|---------|--------------------------------------------|
-| id        | integer     | Test run ID                                |
+| --------- | ------- | ------------------------------------------ |
+| id        | integer | Test run ID                                |
 | visible   | boolean | Shows if public report is available or not |
-
 
 ## Updated Test Run
 
@@ -226,12 +205,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test plan is updated and new test cases were added."
-}
-[/block]
+
+> 📘 This event is being sent when a test plan is updated and new test cases were added.
 
 ### Event name
 
@@ -239,7 +214,7 @@ Payload example:
 
 ### Payload fields
 
-| Parameter   | Type  | Description                           |
-|-------------|-------|---------------------------------------|
-| id          | integer   | Test run ID                       |
-| cases_count | integer    | Amount of test cases in run      |
+| Parameter    | Type    | Description                 |
+| ------------ | ------- | --------------------------- |
+| id           | integer | Test run ID                 |
+| cases\_count | integer | Amount of test cases in run |
