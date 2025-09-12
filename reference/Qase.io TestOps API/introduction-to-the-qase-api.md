@@ -34,9 +34,9 @@ Qase API expects for the API key to be included in all API requests to the serve
 
 All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure). Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
-> 📘 
-> 
-> You must replace API_TOKEN with your personal API key.
+> 📘
+>
+> You must replace API\_TOKEN with your personal API key.
 
 ## Access rights
 
