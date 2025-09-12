@@ -3,3 +3,4 @@
 - get-project
 - delete-project
 - grant-access-to-project
+- revoke-access-to-project
