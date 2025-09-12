@@ -63,7 +63,7 @@ Please refer to this [article](https://help.qase.io/en/articles/9787250-how-do-i
 
 ### Verify the integration
 
-We’ll use a simple test to check if the results are being published to your Qase project. Create the directories **features/ **and **features/steps** in the root of your project and add the following:
+We’ll use a simple test to check if the results are being published to your Qase project. Create the directories **features/** and **features/steps** in the root of your project and add the following:
 
 `features/simple.feature`
 
