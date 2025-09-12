@@ -20,10 +20,10 @@ We provide pre-generated API clients for Python, JavaScript, Java, and Go — th
 
 All reporters are built on top of the Qase API, which follows standard REST conventions. All Reporters these endpoints:
 
-- [GET /project](https://developers.qase.io/reference/get-projects)
-- [POST /run/{code}](https://developers.qase.io/reference/create-run)
-- [POST /result/{code}/{id}/bulk](https://developers.qase.io/reference/create-result-bulk)
-- [PATCH /run/{code}/{id}/complete](https://developers.qase.io/reference/complete-run)
+* [GET /project](https://developers.qase.io/reference/get-projects)
+* [POST /run/\{code}](https://developers.qase.io/reference/create-run)
+* [POST /result/\{code}/\{id}/bulk](https://developers.qase.io/reference/create-result-bulk)
+* [PATCH /run/\{code}/\{id}/complete](https://developers.qase.io/reference/complete-run)
 
 You’ll find more endpoints in the full [API reference](https://developers.qase.io/reference/introduction-to-the-qase-api), along with everything you need to build your own client or integration.
 
@@ -33,10 +33,10 @@ You’ll find more endpoints in the full [API reference](https://developers.qase
 
 We recommend starting with the introduction pages next — they’ll guide you through:
 
-- Picking the right reporter for your framework
-- Configuring it for your test setup
-- Running your tests and reporting results
-- Common troubleshooting tips
+* Picking the right reporter for your framework
+* Configuring it for your test setup
+* Running your tests and reporting results
+* Common troubleshooting tips
 
 After this, you can dive into the specific reporter documentation for your language, with code examples and config options to help you get up and running quickly. 
 
