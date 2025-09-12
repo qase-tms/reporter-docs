@@ -26,7 +26,7 @@ Switch to the ‘Access tokens’ tab, and create a new API token from here. Sav
 
 ### Add the reporter to your project
 
-For Maven Projects  
+For Maven Projects\
 Run the following command to quickly initialize a new project -
 
 ```
