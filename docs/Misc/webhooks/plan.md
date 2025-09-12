@@ -30,12 +30,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new test plan is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new test plan is created.
 
 ### Event name
 
@@ -43,11 +39,11 @@ Payload example:
 
 ### Payload fields
 
-| Parameter   | Type   | Description                 |
-|-------------|--------|-----------------------------|
-| id          | integer    | Test plan ID                |
-| title       | string | Test plan title             |
-| description | string | Test plan description       |
+| Parameter   | Type    | Description                  |
+| ----------- | ------- | ---------------------------- |
+| id          | integer | Test plan ID                 |
+| title       | string  | Test plan title              |
+| description | string  | Test plan description        |
 | cases       | object  | An object with test case ids |
 
 ## Deleted Test Plan
@@ -65,12 +61,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test plan is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a test plan is deleted.
 
 ### Event name
 
@@ -78,9 +70,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description  |
-|-----------|------|--------------|
-| id        | integer  | Test plan ID |
+| Parameter | Type    | Description  |
+| --------- | ------- | ------------ |
+| id        | integer | Test plan ID |
 
 ## Updated Test Plan
 
@@ -100,12 +92,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test plan is updated."
-}
-[/block]
+
+> 📘 This event is being sent when a test plan is updated.
 
 ### Event name
 
@@ -113,7 +101,7 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type  | Description                 |
-|-----------|-------|-----------------------------|
-| id        | integer   | Test plan ID                |
-| cases     | object | An object with test case ids |
+| Parameter | Type    | Description                  |
+| --------- | ------- | ---------------------------- |
+| id        | integer | Test plan ID                 |
+| cases     | object  | An object with test case ids |
