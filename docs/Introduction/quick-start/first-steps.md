@@ -16,8 +16,8 @@ Once you’ve successfully published a test result or two to Qase, it’s a good
 
 There are two places where you can configure the integration:
 
-- In your code, using reporter options
-- In your Qase workspace, through project settings
+* In your code, using reporter options
+* In your Qase workspace, through project settings
 
 Reporter options control what data is sent from your tests. Qase workspace settings define what happens once those results are received — things like whether to auto-create test cases or update existing ones.
 
@@ -46,14 +46,14 @@ This step helps establish your test repository in Qase without any extra manual 
 
 After the first run, assuming auto-create is enabled, your test cases will now exist in Qase and reflect the structure from your code. At this point, you have two options for linking test results to these cases:
 
-1. **Rely on automatically matching the results with existing test cases.** 
-   If you do nothing, Qase will try to match test results using the _test title_ and the _suite path_. This works as long as:
-   - Titles for the test in code, and in Qase, stay the same
-   - You don’t move tests to different suites
-   If you change titles or suite paths, Qase can no longer match the tests so it creates a new test case leading to duplication of tests.
-2. **Use Qase IDs for linking (Recommended)**
-   A more reliable option is to link your tests in code to the test cases in Qase using the unique Qase ID. 
+1. **Rely on automatically matching the results with existing test cases.**\
+   If you do nothing, Qase will try to match test results using the *test title* and the *suite path*. This works as long as:
+   * Titles for the test in code, and in Qase, stay the same
+   * You don’t move tests to different suites\
+     If you change titles or suite paths, Qase can no longer match the tests so it creates a new test case leading to duplication of tests.
+2. **Use Qase IDs for linking (Recommended)**\
+   A more reliable option is to link your tests in code to the test cases in Qase using the unique Qase ID.\
    Once this link is established:
-   - Title and suite changes won’t affect matching
-   - Results will always be assigned to the correct test case
-   This method eliminates the risk of duplicates and ensures consistency between your code and your Qase project.
+   * Title and suite changes won’t affect matching
+   * Results will always be assigned to the correct test case\
+     This method eliminates the risk of duplicates and ensures consistency between your code and your Qase project.
