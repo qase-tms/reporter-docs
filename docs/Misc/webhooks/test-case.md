@@ -78,12 +78,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new test case is created."
-}
-[/block]
+
+<Callout type="info" body="This event is being sent when a new test case is created." />
 
 ### Event name
 
@@ -145,13 +141,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case is cloned."
-}
-[/block]
 
+<Callout type="info" body="This event is being sent when a test case is cloned." />
 
 ### Event name
 
@@ -179,12 +170,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case is updated. It returns only ID of test case and notifies that fields were updated."
-}
-[/block]
+
+<Callout type="info" body="This event is being sent when a test case is updated. It returns only ID of test case and notifies that fields were updated." />
 
 ### Event name
 
@@ -211,12 +198,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case is deleted."
-}
-[/block]
+
+<Callout type="info" body="This event is being sent when a test case is deleted." />
 
 ### Event name
 
