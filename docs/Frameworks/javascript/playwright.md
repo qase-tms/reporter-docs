@@ -34,7 +34,7 @@ Switch to the 'Access tokens' tab, and create a new API token from here. Save th
 
 ### add playwright-qase-reporter to your project
 
-To install and add the reporter as a development dependency, run the following command in your node project [^yarn]\:
+To install and add the reporter as a development dependency, run the following command in your node project [^yarn]:
 
 ```shell npm
 npm install -D playwright-qase-reporter
@@ -47,8 +47,7 @@ yarn add playwright-qase-reporter -D
 
 ### add the reporter to your playwright configuration file
 
-At the very least, the reporter will need two variables defined — your playwright app's token, and the Qase project you want to publish the results to:  
-<br>
+At the very least, the reporter will need two variables defined — your playwright app's token, and the Qase project you want to publish the results to: <br />
 
 ```typescript
 import { defineConfig } from '@playwright/test';
@@ -61,19 +60,19 @@ export default defineConfig({
        /* You can define the reporter options here, or in a separate file. */
         testops: {
           api: {
-            token: '<app-token>',
+            token: `<app-token>`,
           },
-          project: '<project-code>',
+          project: `<project-code>`,
         },
       },
     ],
   ],
-};
+});
 ```
 
-Please refer to [_this article_](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code) for guidance on how to find your Project code in Qase.
+Please refer to [*this article*](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code) for guidance on how to find your Project code in Qase.
 
-You can configure the reporter options in a separate file `qase.config.json`, placed in the _root directory of your project_.
+You can configure the reporter options in a separate file `qase.config.json`, placed in the *root directory of your project*.
 
 ```json
 {
@@ -83,7 +82,7 @@ You can configure the reporter options in a separate file `qase.config.json`, pl
     },
     "project": "<project_code>"
   }
-} 
+}
 ```
 
 <br />
