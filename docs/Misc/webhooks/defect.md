@@ -29,12 +29,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new defect is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new defect is created.
 
 ### Event name
 
@@ -42,13 +38,13 @@ Payload example:
 
 ### Payload fields
 
-| Parameter     | Type   | Description                      |
-|---------------|--------|----------------------------------|
-| id            | integer    | Defect ID                        |
-| title         | string | Defect title                     |
-| severity      | string    | Level of severity                |
-| actual_result | string | A text description of defect     |
-| attachments   | array  | An array of attachments ids.     |
+| Parameter      | Type    | Description                  |
+| -------------- | ------- | ---------------------------- |
+| id             | integer | Defect ID                    |
+| title          | string  | Defect title                 |
+| severity       | string  | Level of severity            |
+| actual\_result | string  | A text description of defect |
+| attachments    | array   | An array of attachments ids. |
 
 ## Updated Defect
 
@@ -65,12 +61,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a defect is updated."
-}
-[/block]
+
+> 📘 This event is being sent when a defect is updated.
 
 ### Event name
 
@@ -78,9 +70,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| id        | integer  | Defect ID   |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| id        | integer | Defect ID   |
 
 ## Deleted Defect
 
@@ -97,12 +89,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a defect is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a defect is deleted.
 
 ### Event name
 
@@ -110,9 +98,9 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| id        | integer  | Defect ID   |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| id        | integer | Defect ID   |
 
 ## Resolved Defect
 
@@ -129,12 +117,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a defect is resolved."
-}
-[/block]
+
+> 📘 This event is being sent when a defect is resolved.
 
 ### Event name
 
@@ -142,6 +126,6 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| id        | integer  | Defect ID   |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| id        | integer | Defect ID   |
