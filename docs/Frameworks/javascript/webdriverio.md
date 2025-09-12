@@ -78,9 +78,9 @@ export const config: Options.Testrunner = {
 
 Additional options to configure in the `wdio.conf.ts` file:
 
-- `disableWebdriverStepsReporting`  – Default: `false` to not log custom steps to the reporter.
-- `disableWebdriverScreenshotsReporting` – Default: `false` do not attach screenshots to the reporter.
-- `useCucumber` – Default: `false` if you use Cucumber, enable this option.
+* `disableWebdriverStepsReporting`  – Default: `false` to not log custom steps to the reporter.
+* `disableWebdriverScreenshotsReporting` – Default: `false` do not attach screenshots to the reporter.
+* `useCucumber` – Default: `false` if you use Cucumber, enable this option.
 
 At the very least, the reporter will need two variables defined - your WebdriverIO App’s Token, and the Qase Project code you want to publish your results to.
 
