@@ -1,3 +1,4 @@
 - get-environments
 - create-environment
 - get-environment
+- delete-environment
