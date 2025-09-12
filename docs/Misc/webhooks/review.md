@@ -33,12 +33,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a new test case review is created."
-}
-[/block]
+
+> 📘 This event is being sent when a new test case review is created.
 
 ### Event name
 
@@ -46,19 +42,19 @@ Payload example:
 
 ### Payload fields
 
-| Parameter  | Type   | Description                                  |
-|------------|--------|----------------------------------------------|
-| id         | integer    | Test case review ID                          |
-| title      | string | Test case title                              |
-| case_id    | integer    | Test case ID                                 |
-| project    | string | Project code                                 |
-| created_by | object   | User object                                  |
-| created    | string | Test case review creation timestamp          |
+| Parameter   | Type    | Description                         |
+| ----------- | ------- | ----------------------------------- |
+| id          | integer | Test case review ID                 |
+| title       | string  | Test case title                     |
+| case\_id    | integer | Test case ID                        |
+| project     | string  | Project code                        |
+| created\_by | object  | User object                         |
+| created     | string  | Test case review creation timestamp |
 
 ### User object
 
 | Parameter | Type   | Description |
-|-----------|--------|-------------|
+| --------- | ------ | ----------- |
 | email     | string | User email  |
 | name      | string | User name   |
 
@@ -82,12 +78,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review approval status is changed."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review approval status is changed.
 
 ### Event name
 
@@ -95,11 +87,11 @@ Payload example:
 
 ### Payload fields
 
-| Parameter  | Type   | Description                                                 |
-|------------|--------|-------------------------------------------------------------|
-| id         | integer    | Test case review ID                                         |
-| status     | string | Possible value: `unapproved`, `approved`, `request changes` |
-| updated_by | object   | User object                                                 |
+| Parameter   | Type    | Description                                                 |
+| ----------- | ------- | ----------------------------------------------------------- |
+| id          | integer | Test case review ID                                         |
+| status      | string  | Possible value: `unapproved`, `approved`, `request changes` |
+| updated\_by | object  | User object                                                 |
 
 ## Commented Test Review
 
@@ -121,12 +113,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is commented."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is commented.
 
 ### Event name
 
@@ -134,11 +122,11 @@ Payload example:
 
 ### Payload fields
 
-| Parameter    | Type    | Description            |
-|--------------|---------|------------------------|
-| id           | integer     | Test case review ID    |
-| comment      | string  | Comment in test review |
-| commented_by | object    | User object            |
+| Parameter     | Type    | Description            |
+| ------------- | ------- | ---------------------- |
+| id            | integer | Test case review ID    |
+| comment       | string  | Comment in test review |
+| commented\_by | object  | User object            |
 
 ## Declined Test Review
 
@@ -159,12 +147,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is declined."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is declined.
 
 ### Event name
 
@@ -172,10 +156,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter   | Type | Description         |
-|-------------|------|---------------------|
-| id          | integer  | Test case review ID |
-| declined_by | object | User object         |
+| Parameter    | Type    | Description         |
+| ------------ | ------- | ------------------- |
+| id           | integer | Test case review ID |
+| declined\_by | object  | User object         |
 
 ## Deleted Test Review
 
@@ -196,12 +180,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is deleted.
 
 ### Event name
 
@@ -209,10 +189,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter  | Type | Description         |
-|------------|------|---------------------|
-| id         | integer  | Test case review ID |
-| deleted_by | object | User object         |
+| Parameter   | Type    | Description         |
+| ----------- | ------- | ------------------- |
+| id          | integer | Test case review ID |
+| deleted\_by | object  | User object         |
 
 ## Merged Test Review
 
@@ -233,12 +213,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is merged."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is merged.
 
 ### Event name
 
@@ -246,10 +222,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description         |
-|-----------|------|---------------------|
-| id        | integer  | Test case review ID |
-| merged_by | object | User object         |
+| Parameter  | Type    | Description         |
+| ---------- | ------- | ------------------- |
+| id         | integer | Test case review ID |
+| merged\_by | object  | User object         |
 
 ## Reopened Test Review
 
@@ -298,12 +274,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is reopened."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is reopened.
 
 ### Event name
 
@@ -311,16 +283,16 @@ Payload example:
 
 ### Payload fields
 
-| Parameter  | Type   | Description                         |
-|------------|--------|-------------------------------------|
-| id         | integer    | Test case review ID                 |
-| title      | string | Test case title                     |
-| case_id    | integer    | Test case ID                        |
-| project    | string | Project code                        |
-| data       | object | Test case review object             |
-| updated_by | object   | User object                         |
-| approves   | array  | Approve objects array               |
-| updated    | string | Test case review update timestamp   |
+| Parameter   | Type    | Description                       |
+| ----------- | ------- | --------------------------------- |
+| id          | integer | Test case review ID               |
+| title       | string  | Test case title                   |
+| case\_id    | integer | Test case ID                      |
+| project     | string  | Project code                      |
+| data        | object  | Test case review object           |
+| updated\_by | object  | User object                       |
+| approves    | array   | Approve objects array             |
+| updated     | string  | Test case review update timestamp |
 
 ## Reviewer added Test Review
 
@@ -341,12 +313,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case reviewer is added."
-}
-[/block]
+
+> 📘 This event is being sent when a test case reviewer is added.
 
 ### Event name
 
@@ -354,10 +322,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description         |
-|-----------|------|---------------------|
-| id        | integer  | Test case review ID |
-| reviewer  | object | User object         |
+| Parameter | Type    | Description         |
+| --------- | ------- | ------------------- |
+| id        | integer | Test case review ID |
+| reviewer  | object  | User object         |
 
 ## Reviewer removed Test Review
 
@@ -378,12 +346,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case reviewer is removed."
-}
-[/block]
+
+> 📘 This event is being sent when a test case reviewer is removed.
 
 ### Event name
 
@@ -391,10 +355,10 @@ Payload example:
 
 ### Payload fields
 
-| Parameter | Type | Description         |
-|-----------|------|---------------------|
-| id        | integer  | Test case review ID |
-| reviewer  | object | User object         |
+| Parameter | Type    | Description         |
+| --------- | ------- | ------------------- |
+| id        | integer | Test case review ID |
+| reviewer  | object  | User object         |
 
 ## Updated Test Review
 
@@ -442,12 +406,8 @@ Payload example:
   "project_code": "ID"
 }
 ```
-[block:callout]
-{
-  "type": "info",
-  "body": "This event is being sent when a test case review is deleted."
-}
-[/block]
+
+> 📘 This event is being sent when a test case review is deleted.
 
 ### Event name
 
@@ -455,13 +415,13 @@ Payload example:
 
 ### Payload fields
 
-| Parameter  | Type   | Description                         |
-|------------|--------|-------------------------------------|
-| id         | integer    | Test case review ID                 |
-| title      | string | Test case title                     |
-| case_id    | integer    | Test case ID                        |
-| project    | string | Project code                        |
-| data       | objeact | Test case review object             |
-| updated_by | object   | User object                         |
-| approves   | array  | Approve objects array               |
-| updated    | string | Test case review update timestamp   |
+| Parameter   | Type    | Description                       |
+| ----------- | ------- | --------------------------------- |
+| id          | integer | Test case review ID               |
+| title       | string  | Test case title                   |
+| case\_id    | integer | Test case ID                      |
+| project     | string  | Project code                      |
+| data        | objeact | Test case review object           |
+| updated\_by | object  | User object                       |
+| approves    | array   | Approve objects array             |
+| updated     | string  | Test case review update timestamp |
