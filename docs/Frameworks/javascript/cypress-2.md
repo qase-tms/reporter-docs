@@ -38,7 +38,6 @@ To install and add the reporter as a development dependency, run the following i
 npm install -D cucumberjs-qase-reporter
 ```
 ```Text yarn
-
 ```
 
 <br />
