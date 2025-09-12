@@ -14,7 +14,7 @@ next:
 
 To integrate Qase into your project, follow these steps -
 
-Activate the Cucumber6 App  
+Activate the Cucumber6 App\
 To activate the app, go to the [Apps](https://app.qase.io/apps?app=cucumber6-reporter) section in your workspace, and click on ‘Activate’
 
 Switch to the ‘Access tokens’ tab, and create a new API token from here. Save the API token as we’ll need it for the next steps.
