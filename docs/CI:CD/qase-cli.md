@@ -76,7 +76,7 @@ docker run --rm ghcr.io/qase-tms/qase-cli:latest <add-your-command-here>
 
 ## Using Qase CLI
 
-You can generate an API token from [here](https://app.qase.io/user/api/token) 🔗  and refer to [this guide](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code) 🔗 to find your project code, and run_id in Qase. 
+You can generate an API token from [here](https://app.qase.io/user/api/token) 🔗  and refer to [this guide](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code) 🔗 to find your project code, and run\_id in Qase. 
 
 ## Create a test run
 
@@ -104,14 +104,14 @@ Example usage -
 qasectl testops run create
 ```
 
-- `-p`  `<project_code>`
-- `-t`  `<token>`
-- `--title`  `<title>`
-- `-d`  `<description>`
-- `-e`  `<environment>`
-- `-m`  `<milestone>`
-- `-o`  `<plan>`
-- `-v`
+* `-p`  `<project_code>`
+* `-t`  `<token>`
+* `--title`  `<title>`
+* `-d`  `<description>`
+* `-e`  `<environment>`
+* `-m`  `<milestone>`
+* `-o`  `<plan>`
+* `-v`
 
 <br />
 
@@ -119,18 +119,18 @@ qasectl testops run create
 
 **Required:**
 
-- `--project`, `-p`: The project code where the test run will be created.
-- `--token`, `-t`: The API token to authenticate with the Qase API.
-- `--title`: The name of the test run.
+* `--project`, `-p`: The project code where the test run will be created.
+* `--token`, `-t`: The API token to authenticate with the Qase API.
+* `--title`: The name of the test run.
 
 **Optional:**
 
-- `--description`, `-d`: The description of the test run.
-- `--environment`, `-e`: The environment where the test run will be executed.
-- `--milestone`, `-m`: The milestone of the test run.
-- `--plan`: The test plan of the test run.
-- `--output`, `-o`: Output path to save the run ID (default is `qase.env` in working directory).
-- `--verbose`, `-v`: Enable verbose mode.
+* `--description`, `-d`: The description of the test run.
+* `--environment`, `-e`: The environment where the test run will be executed.
+* `--milestone`, `-m`: The milestone of the test run.
+* `--plan`: The test plan of the test run.
+* `--output`, `-o`: Output path to save the run ID (default is `qase.env` in working directory).
+* `--verbose`, `-v`: Enable verbose mode.
 
 The following example shows how to create a test run in the project with the code `DEMO`:
 
@@ -189,20 +189,20 @@ qasectl testops result upload
 
 **Required:**
 
-- `--project`, `-p`: The project code where the test results will be uploaded.
-- `--token`, `-t`: The API token to authenticate with the Qase API.
-- `--id`: The ID of the test run to upload results for. Required if title is not set.
-- `--path`: The path to the test results file or folder.
-- `--format`: The format of the test results file. Allowed values: `junit`, `qase`, `allure`, `xctest`.
+* `--project`, `-p`: The project code where the test results will be uploaded.
+* `--token`, `-t`: The API token to authenticate with the Qase API.
+* `--id`: The ID of the test run to upload results for. Required if title is not set.
+* `--path`: The path to the test results file or folder.
+* `--format`: The format of the test results file. Allowed values: `junit`, `qase`, `allure`, `xctest`.
 
 **Optional:**
 
-- `--description`, `-d`: The description of the test results.
-- `--steps`: The mode of upload steps for XCTest. Allowed values: `all`, `user`.
-- `--batch`: The batch number of the test results. Default value is `200`.
-- `--suite`, `-s`: Define the root suite for all the test results.
-- `--replace-statuses`, `-r`: The statuses to replace. Optional. Pass like `{\"Passed\": \"Failed\"}` to replace all passed results with failed. **Note**: Use slugs of statuses.
-- `--verbose`, `-v`: Enable verbose mode.
+* `--description`, `-d`: The description of the test results.
+* `--steps`: The mode of upload steps for XCTest. Allowed values: `all`, `user`.
+* `--batch`: The batch number of the test results. Default value is `200`.
+* `--suite`, `-s`: Define the root suite for all the test results.
+* `--replace-statuses`, `-r`: The statuses to replace. Optional. Pass like `{\"Passed\": \"Failed\"}` to replace all passed results with failed. **Note**: Use slugs of statuses.
+* `--verbose`, `-v`: Enable verbose mode.
 
 The following example shows how to upload test results in the `JUnit` format for a test run with the ID `1` in the project with the code `DEMO`:
 
@@ -218,12 +218,12 @@ qasectl testops result upload
 
 Similarly, use the following paths for other result types:
 
-- **Qase format:** `--path /path/to/build/qase-results/results.json`
-  - For results generated from` qase-pytest` , use the path: `/path/to/build/qase-results/results/`
+* **Qase format:** `--path /path/to/build/qase-results/results.json`
+  * For results generated from` qase-pytest` , use the path: `/path/to/build/qase-results/results/`
 
-- **Allure format:** `--path /path/to/allure-results`
+* **Allure format:** `--path /path/to/allure-results`
 
-- **XCTest format:** `--path /path/to/xctest-results`
+* **XCTest format:** `--path /path/to/xctest-results`
 
 <br />
 
@@ -237,9 +237,9 @@ If the file path is not specified, `qase.env` will be saved to the working direc
 
 The `qase.env` file will contain:
 
-- `QASE_ENVIRONMENT=<slug>`
-- or
-- `QASE_MILESTONE=<id>`
+* `QASE_ENVIRONMENT=<slug>`
+* or
+* `QASE_MILESTONE=<id>`
 
 You can use the environment slug or milestone ID in subsequent steps when creating a new test run.
 
@@ -275,16 +275,16 @@ qasectl testops env create
 
 **Required:**
 
-- `--project`, `-p`: The project code where the environment will be created.
-- `--token`, `-t`: The API token to authenticate with the Qase API.
-- `--title`: The title of the environment.
-- `--slug`: The slug value of the environment.
+* `--project`, `-p`: The project code where the environment will be created.
+* `--token`, `-t`: The API token to authenticate with the Qase API.
+* `--title`: The title of the environment.
+* `--slug`: The slug value of the environment.
 
 **Optional:**
 
-- `--description`, `-d`: The description of the environment.
-- `--output`, `-o`: Output path to save `qase.env`.
-- `--verbose`, `-v`: Enable verbose mode.
+* `--description`, `-d`: The description of the environment.
+* `--output`, `-o`: Output path to save `qase.env`.
+* `--verbose`, `-v`: Enable verbose mode.
 
 <br />
 
@@ -307,14 +307,14 @@ qasectl testops milestone create
 
 **Required:**
 
-- `--project`, `-p`: The project code where the milestone will be created.
-- `--token`, `-t`: The API token to authenticate with the Qase API.
-- `--title`: The name of the milestone.
+* `--project`, `-p`: The project code where the milestone will be created.
+* `--token`, `-t`: The API token to authenticate with the Qase API.
+* `--title`: The name of the milestone.
 
 **Optional:**
 
-- `--description`, `-d`: The description of the milestone.
-- `--status`, `-s`: The status of the milestone. Allowed values: `active`, `completed`.
-- `--due-date`, `-d`: The due date of the milestone. Format: `YYYY-MM-DD`.
-- `--output`, `-o`: Output path to save `qase.env`.
-- `--verbose`, `-v`: Enable verbose mode.
+* `--description`, `-d`: The description of the milestone.
+* `--status`, `-s`: The status of the milestone. Allowed values: `active`, `completed`.
+* `--due-date`, `-d`: The due date of the milestone. Format: `YYYY-MM-DD`.
+* `--output`, `-o`: Output path to save `qase.env`.
+* `--verbose`, `-v`: Enable verbose mode.
