@@ -50,14 +50,14 @@ export QASE_MODE=testops
 
 The command for setting an Environment variable differs from shell to shell. 
 
-- for ﻿Command Prompt - `set QASE_MODE=testops`
-- for ﻿PowerShell - `$env:QASE_MODE="testops"`  ﻿
+* for ﻿Command Prompt - `set QASE_MODE=testops`
+* for ﻿PowerShell - `$env:QASE_MODE="testops"`  ﻿
 
 <br />
 
 ### `fallback`: your automatic plan B
 
-`fallback` defines what the reporter should do **if the primary `mode` throws an error** (network outage, bad token, etc.). When that happens, the following happens so that no data is lost and your tests keep running:
+`fallback` defines what the reporter should do **if the primary`mode` throws an error** (network outage, bad token, etc.). When that happens, the following happens so that no data is lost and your tests keep running:
 
 1. Catches the error.  
 2. Instantly swaps to the fallback mode.  
