@@ -95,4 +95,6 @@ We’re already using a dedicated step to mark it complete anyway. So make sure 
 
 **References:**
 
-The branch `docs/sharding` in this repo has an example tests you can try running: [https://github.com/qase-tms/playwright-demo/tree/docs/sharding](https://github.com/qase-tms/playwright-demo/tree/docs/sharding)
+The branch `[docs/sharding](https://github.com/qase-tms/playwright-demo/tree/docs/sharding)` in this repo has an example tests you can try running.
+
+<br />
