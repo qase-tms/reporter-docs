@@ -2,7 +2,7 @@
 title: Parallel execution and sharding
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -55,7 +55,7 @@ Here’s something useful to know about all Qase reporters: before they go ahead
 
 If it finds a value there, it skips creating a new run and uses that particular run ID to report results into it.
 
-What we’ll do is create a test run as a separate step before any tests actually run, before the test runner even kicks in. You could use a simple curl request to the Qase API, but for GitHub workflows, we have GitHub actions that are much more elegant to use.
+What we’ll do is create a test run as a separate step before any tests actually run, before the test runner even kicks in. You could use a simple [cURL request to the Qase API](https://developers.qase.io/reference/create-run#/), but for teams using GitHub workflows, we have GitHub actions that are much more elegant to use.
 
 <br />
 
@@ -67,28 +67,32 @@ A detail to know about the reporter is that before going to create a test run ea
 
 If a value is given, it skips creation of run and uses this partiuclar run id to report results into it.
 
-What we'll do here, is create a test run as a separate prior step before any tests are run, before the tst runner kicks in. While you can use a simple curl request [https://developers.qase.io/reference/create-run#/](https://developers.qase.io/reference/create-run#/), for github workflows, we have github actions that are more elegant to use.
+What we'll do here, is create a test run as a separate prior step before any tests are run, before the tst runner kicks in. While you can use a simple curl request [https://developers.qase.io/reference/create-run#/](https://developers.qase.io/reference/create-run#/), for github workflows, we have [Github actions](https://github.com/qase-tms/gh-actions) that are more elegant to use.
 
-this workflow uses the same, for your reference: URL
-
-It creates a test run and uses ther esulttant run id and gives it as a env varible in the step where the tests are run. There after once all tests are run, one more steps mark this test run as closed, using the same run id. 
-
-The report in Qase looks like this. Instead of 4 separate test runs, we get a single test run that has all ther esults.
-
-<Image align="center" className="border" border={true} width="90% " src="https://files.readme.io/72aaf66a6023e59aca114821009de285ea37ede738960ea80e36b23e2dbe1304-image.png" />
+[Example workflow with this solution implemented.](https://github.com/qase-tms/playwright-demo/blob/main/.github/workflows/qase-proper-setup.yml)
 
 <Image align="center" width="90% " src="https://files.readme.io/2c532c346c9f819b578d973b900899eca5baa12a3319875f9cde5120537032c3-image.png" />
 
+* It creates a test run.
+* takes the resulting run ID, and passes it as an environment variable in the step where tests are executed. 
+* After all tests finish running, there’s one more step that marks this test run as closed using the same run ID.
+
+The report in Qase looks much better now. Instead of 4 separate test runs, we get a single test run with all the results:
+
+<Image align="center" className="border" border={true} width="90% " src="https://files.readme.io/72aaf66a6023e59aca114821009de285ea37ede738960ea80e36b23e2dbe1304-image.png" />
+
 <br />
 
-One thing to keep in mind. One more reporter option QASE_TESTOPS_RUN_COMPLETE will need to be set to false, what this option does is ti marks the test run as complete once all the results are sent in. Because we have multiple instances of test runner, each will try to mark the test run as complete as soon as it finishes reporting. We don't want that as it gives us a wrong run end time. We're anyway using a dedicaed step to mark it as complete. So, make sure this particular option is not set to true. if you're not using this option then it's okay, because the default value for this is false.
+#### One important thing to remember:
+
+You’ll need to set the reporter option `QASE_TESTOPS_RUN_COMPLETE` to `false`. 
+
+What this option does is mark the test run as complete once all results are sent. Since we have multiple test runner instances, each one will try to mark the test run as complete as soon as it finishes reporting. We don’t want that because it messes up our run's end time. 
+
+We’re already using a dedicated step to mark it complete anyway. So make sure this option isn’t set to true. If you’re not using this option at all, you’re fine, as the default value is `false`.
 
 <br />
 
-Reference: 
+**References:**
 
-All workflows used in this article: https://github.com/qase-tms/playwright-demo/tree/main/.github/workflows
-
-The branch 'docs/sharding' in this repo contains an example test, you an try running: https://github.com/qase-tms/playwright-demo/tree/docs/sharding
-
-Github actions for Qase endpoints: https://github.com/qase-tms/gh-actions
+The branch `docs/sharding` in this repo has an example tests you can try running: [https://github.com/qase-tms/playwright-demo/tree/docs/sharding](https://github.com/qase-tms/playwright-demo/tree/docs/sharding)
