@@ -74,7 +74,7 @@ What we'll do here, is create a test run as a separate prior step before any tes
 <Image align="center" width="90% " src="https://files.readme.io/2c532c346c9f819b578d973b900899eca5baa12a3319875f9cde5120537032c3-image.png" />
 
 * It creates a test run.
-* takes the resulting run ID, and passes it as an environment variable in the step where tests are executed. 
+* takes the resulting run ID, and passes it as an environment variable in the step where tests are executed.
 * After all tests finish running, there’s one more step that marks this test run as closed using the same run ID.
 
 The report in Qase looks much better now. Instead of 4 separate test runs, we get a single test run with all the results:
@@ -85,9 +85,9 @@ The report in Qase looks much better now. Instead of 4 separate test runs, we ge
 
 #### One important thing to remember:
 
-You’ll need to set the reporter option `QASE_TESTOPS_RUN_COMPLETE` to `false`. 
+You’ll need to set the reporter option `QASE_TESTOPS_RUN_COMPLETE` to `false`.
 
-What this option does is mark the test run as complete once all results are sent. Since we have multiple test runner instances, each one will try to mark the test run as complete as soon as it finishes reporting. We don’t want that because it messes up our run's end time. 
+What this option does is mark the test run as complete once all results are sent. Since we have multiple test runner instances, each one will try to mark the test run as complete as soon as it finishes reporting. We don’t want that because it messes up our run's end time.
 
 We’re already using a dedicated step to mark it complete anyway. So make sure this option isn’t set to true. If you’re not using this option at all, you’re fine, as the default value is `false`.
 
