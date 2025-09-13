@@ -28,7 +28,7 @@ Parallel execution can be set up in a few different ways, depending on the envir
 
 ***
 
-## How the reporter usually works
+## How the reporter usually works 
 
 The Qase reporter manages sending your automated test results back to Qase in a few simple steps.
 
