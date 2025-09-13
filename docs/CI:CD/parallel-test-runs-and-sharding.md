@@ -25,6 +25,8 @@ This article uses Playwright as the example, but the same steps can be applied t
 
 ***
 
+<br />
+
 #### Problem:
 
 When tests are executed in parallel or through sharding, a common issue arises during reporting to Qase, instead of all results being grouped into a single test run, multiple runs are created, one for each shard or worker.
@@ -56,8 +58,6 @@ Here’s something useful to know about all Qase reporters: before they go ahead
 If it finds a value there, it skips creating a new run and uses that particular run ID to report results into it.
 
 What we’ll do is create a test run as a separate step before any tests actually run, before the test runner even kicks in. You could use a simple [cURL request to the Qase API](https://developers.qase.io/reference/create-run#/), but for teams using GitHub workflows, we have GitHub actions that are much more elegant to use.
-
-<br />
 
 Ideally, what we'll need is for all of these results from each shared to be reported to a single test run. Let's see how we can acheive that.
 
@@ -96,5 +96,3 @@ We’re already using a dedicated step to mark it complete anyway. So make sure 
 **References:**
 
 The branch `[docs/sharding](https://github.com/qase-tms/playwright-demo/tree/docs/sharding)` in this repo has an example tests you can try running.
-
-<br />
