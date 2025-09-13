@@ -10,32 +10,54 @@ metadata:
 next:
   description: ''
 ---
-As test suites grow larger, execution time often becomes a challenge. Running hundreds of tests one after another can slow down feedback cycles, which is why many teams adopt parallel execution or sharding. These approaches distribute tests across multiple workers or shards, allowing them to run at the same time and finish faster.
-
-This article uses Playwright as the example, but the same steps can be applied to almost all other reporters.
+As test suites grow larger, execution time often becomes a challenge. Running hundreds of tests one after another can slow down feedback cycles, which is why many teams adopt parallel execution or sharding. These approaches distribute tests across multiple workers or shards, allowing them to run simultaneously and finish faster.
 
 Parallel execution can be set up in a few different ways, depending on the environment and tooling:
 
-* **Parallel workers** – Tests are divided across multiple workers (threads or processes) on the same machine, each running a portion of the suite at the same time.
-* **Sharding** – The test suite is split into shards, with each shard running on a different machine or container. This is especially useful in CI/CD pipelines where cloud infrastructure can spin up multiple runners in parallel.
+* Parallel workers – Tests are divided across multiple workers (threads or processes) on the same machine, each running a portion of the suite simultaneously.
+* Sharding – The test suite is split into shards, with each shard running on a different machine or container. This is especially useful in CI/CD pipelines where cloud infrastructure can spin up multiple runners in parallel.
 
-Here's an example of a workflow where sharing is used, with a usual HTML reporter in playwright: tests are distrbuted across 4 shards and all the individual reports are then merged into a single consolidated report at the end.
+Consider a typical sharded workflow: tests are distributed across 4 shards, and individual reports are merged into a single consolidated HTML report upon completion.
+
+[Example workflow for a standard Sharding setup](https://github.com/qase-tms/playwright-demo/blob/main/.github/workflows/standard-sharding.yml)
+
+This article uses Playwright as the example, but the same steps can be applied to almost all other reporters.
 
 ***
 
-**Problem**: When tests are executed in parallel or through sharding, a common issue arises during reporting to Qase, instead of all results being grouped into a single test run, multiple runs are created, one for each shard or worker.
+#### Problem:
 
-**The reporter works like this** – for each test runner instance that is executed as a process, the reporter works in tandem, to first create a test run in Qase, package the results it receives from the test runner to publish them to Qase. Finally, marks the test run as complete (_if enabled in your reporter configuration)_.
-
-When tests are run in parallel, or in shards, multiple process are created for the test runner and so it follows that for ther reporter too. Each reporter instances creates it's own test run and publishes whatever results it gets from that particular instance of test runner. This results in multiple runs. 
-
-Continuing on the previous example, if you were to simply use the reporter as it is, with default, what you'll get is four different test runs for four shards. Here's how it looks like, in Qase: 
-
-Here's the example of a workflow that simply uses the reporter without any additional configuration:
+When tests are executed in parallel or through sharding, a common issue arises during reporting to Qase, instead of all results being grouped into a single test run, multiple runs are created, one for each shard or worker.
 
 <br />
 
+#### How the Reporter Currently Works
+
+For each test runner instance that gets executed as a process, the reporter works alongside it. It first creates a test run in Qase, packages up the results it receives from that test runner, and publishes them to Qase. Finally, it marks the test run as complete (_if you’ve enabled that in your reporter configuration_).
+
+When you run tests in parallel or in shards, multiple processes get created for the test runner, and naturally, the same happens for the reporter. Each reporter instance creates its own test run and publishes whatever results it gets from its particular test runner instance. This results in multiple runs being created in Qase.
+
+Going back to our earlier example, if you just use the reporter as-is with default settings, you’ll end up with four different test runs for your four shards. Here’s what that looks like in Qase:
+
+[Example workflow where multiple test runs are created in Qase](https://github.com/qase-tms/playwright-demo/blob/main/.github/workflows/qase-multiple-runs.yml)
+
 <Image align="center" className="border" border={true} width="90% " src="https://files.readme.io/099d886256b53b2bed66b3b312b84b9fc4a47b5bcbdd702a36a67c48e4654b3e-image.png" />
+
+<br />
+
+#### The solution
+
+What we really need is for all these results from each shard to be reported into a single test run. Let’s see how we can make that happen.
+
+The root issue is that each reporter instance is creating its own test run. So if we can create a test run first and then get all reporter instances to report to that same run, we’ve solved our problem.
+
+Here’s something useful to know about all Qase reporters: before they go ahead and creates a test run, they check if a `run_id` is already provided, either through the config file or as a value in this environment variable: `QASE_TESTOPS_RUN_ID`
+
+If it finds a value there, it skips creating a new run and uses that particular run ID to report results into it.
+
+What we’ll do is create a test run as a separate step before any tests actually run, before the test runner even kicks in. You could use a simple curl request to the Qase API, but for GitHub workflows, we have GitHub actions that are much more elegant to use.
+
+<br />
 
 Ideally, what we'll need is for all of these results from each shared to be reported to a single test run. Let's see how we can acheive that.
 
@@ -43,42 +65,30 @@ The root of the problem is that each reporter instance creating it's own test ru
 
 A detail to know about the reporter is that before going to create a test run each time, it check if a run_id is provided, either through the config file, or as an value against this environemtn variable: QASE_TESTOPS_RUN_ID
 
-If a value is given, it skips creation of run and uses this partiuclar run id to report results into it. 
+If a value is given, it skips creation of run and uses this partiuclar run id to report results into it.
 
-What we'll do here, is create a test run as a separate prior step before any tests are run, before the tst runner kicks in. While you can use a simple curl request https://developers.qase.io/reference/create-run#/
+What we'll do here, is create a test run as a separate prior step before any tests are run, before the tst runner kicks in. While you can use a simple curl request [https://developers.qase.io/reference/create-run#/](https://developers.qase.io/reference/create-run#/), for github workflows, we have github actions that are more elegant to use.
 
-<br />
+this workflow uses the same, for your reference: URL
 
-**Create a new test run** – The first step is to create a new test run in Qase. If run creation fails for any reason, the reporter checks for any fallback configuration. If no fallback is defined, the process will fail, and results will not be reported.
+It creates a test run and uses ther esulttant run id and gives it as a env varible in the step where the tests are run. There after once all tests are run, one more steps mark this test run as closed, using the same run id. 
 
-1. **Package the test results** – Once the run is successfully created, the reporter gathers all test results from the executed tests.
-2. **Format results for the API** – The results are then structured into the proper API payload format, ensuring that Qase can correctly interpret and store the test outcomes.
-3. **Send results to Qase** – Finally, the formatted results are sent to Qase through the API, linking each test result to the corresponding test case in the system.
+The report in Qase looks like this. Instead of 4 separate test runs, we get a single test run that has all ther esults.
 
-By default, the reporter automatically creates the test run and marks it as complete once results are sent. This default behavior can be modified with the following variables:
+<Image align="center" className="border" border={true} width="90% " src="https://files.readme.io/72aaf66a6023e59aca114821009de285ea37ede738960ea80e36b23e2dbe1304-image.png" />
 
-* If `QASE_TESTOPS_RUN_COMPLETE` is set to `False`, the test run will stay in progress and won't be marked as complete automatically.
-* If `QASE_TESTOPS_RUN_ID` is already set, the reporter will use the existing run ID instead of creating a new run, ensuring all results go into the same test run.
-
-***
-
-## Handling parallel execution and sharding
-
-When running tests in parallel or using sharding, the default reporter setup can create separate test runs for each parallel process or shard. To ensure all results are reported to a single run in Qase, a slightly different approach is needed:
-
-1. **Create a new test run** – Before starting the parallel or sharded tests, create a new run in Qase and obtain its run ID.
-2. **Set the run ID in the reporter configuration** – Pass the obtained `QASE_TESTOPS_RUN_ID` to each parallel process or shard, so that all results are linked to the same run.
-3. **Turn off auto-complete** – Set `QASE_TESTOPS_RUN_COMPLETE` to `False` during this phase. This ensures the run remains open while multiple processes are writing results.
-4. **Execute parallel/sharded tests** – Run the tests in parallel or across shards. Each process/shard will send its results to the same run in Qase.
-5. **Close the run** – Once all parallel processes or shards have finished and reported their results, run a separate job to mark the test run as complete.
+<Image align="center" width="90% " src="https://files.readme.io/2c532c346c9f819b578d973b900899eca5baa12a3319875f9cde5120537032c3-image.png" />
 
 <br />
 
-### Using GitHub Actions
-
-If you are using GitHub Actions, there’s a Qase Action that makes managing test runs straightforward. With this action, you can:
-
-* **Create a new test run** at the start of your workflow and obtain a run ID. Refer to the [Create Run documentation](https://github.com/qase-tms/gh-actions/tree/main/run-create) for step-by-step instructions.
-* **Complete the test run** once all jobs have reported their results. See the [Complete Run documentation](https://github.com/qase-tms/gh-actions/tree/main/run-complete) for guidance on completing a run.
+One thing to keep in mind. One more reporter option QASE_TESTOPS_RUN_COMPLETE will need to be set to false, what this option does is ti marks the test run as complete once all the results are sent in. Because we have multiple instances of test runner, each will try to mark the test run as complete as soon as it finishes reporting. We don't want that as it gives us a wrong run end time. We're anyway using a dedicaed step to mark it as complete. So, make sure this particular option is not set to true. if you're not using this option then it's okay, because the default value for this is false.
 
 <br />
+
+Reference: 
+
+All workflows used in this article: https://github.com/qase-tms/playwright-demo/tree/main/.github/workflows
+
+The branch 'docs/sharding' in this repo contains an example test, you an try running: https://github.com/qase-tms/playwright-demo/tree/docs/sharding
+
+Github actions for Qase endpoints: https://github.com/qase-tms/gh-actions
