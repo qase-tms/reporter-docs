@@ -1,6 +1,6 @@
 ---
 title: Create test run result
-excerpt: >-
+excerpt: >
   This method allows to create single test run result.
 
 

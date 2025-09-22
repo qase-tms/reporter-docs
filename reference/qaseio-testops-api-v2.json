@@ -1,1 +1,549 @@
-{"openapi":"3.0.0","info":{"title":"Qase.io TestOps API v2","description":"Qase TestOps API v2 Specification.","termsOfService":"https://qase.io/terms","version":"2.0.0","contact":{"name":"Qase.io","url":"https://qase.io","email":"support@qase.io"},"license":{"name":"Apache 2.0","url":"https://github.com/qase-tms/specs/blob/master/LICENSE"}},"tags":[{"name":"attachments"},{"name":"authors"},{"name":"cases"},{"name":"custom-fields"},{"name":"environments"},{"name":"defects"},{"name":"plans"},{"name":"projects"},{"name":"results"},{"name":"milestones"},{"name":"runs"},{"name":"search"},{"name":"shared-steps"},{"name":"suites"}],"servers":[{"url":"https://api.qase.io/v2","description":"The production API server."}],"paths":{"/{project_code}/run/{run_id}/result":{"post":{"summary":"Create test run result","description":"This method allows to create single test run result.\n\nIf there is no free space left in your team account, when attempting to upload an attachment, e.g., through reporters, you will receive an error with code 507 - Insufficient Storage.\n","operationId":"create-result-v2","tags":["results"],"parameters":[{"name":"project_code","in":"path","required":true,"schema":{"type":"string"}},{"name":"run_id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","description":"If passed, used as an idempotency key"},"title":{"type":"string"},"signature":{"type":"string"},"testops_id":{"type":"integer","format":"int64","nullable":true,"description":"ID of the test case. Cannot be specified together with testopd_ids."},"testops_ids":{"type":"array","items":{"type":"integer","format":"int64"},"nullable":true,"description":"IDs of the test cases. Cannot be specified together with testopd_id."},"execution":{"$ref":"#/components/schemas/ResultExecution"},"fields":{"type":"object","properties":{"author":{"type":"string","description":"Author of the related test case (member id, name or email). If set and test case auto-creation is enabled, the author will be used to create the test case"},"description":{"type":"string"},"preconditions":{"type":"string"},"postconditions":{"type":"string"},"layer":{"type":"string"},"severity":{"type":"string"},"priority":{"type":"string"},"behavior":{"type":"string"},"type":{"type":"string"},"muted":{"type":"string"},"is_flaky":{"type":"string"},"executed_by":{"type":"string","description":"User who executed the test (member id, name or email)"}},"additionalProperties":{"type":"string"}},"attachments":{"type":"array","items":{"type":"string"}},"steps":{"type":"array","items":{"$ref":"#/components/schemas/ResultStep"}},"steps_type":{"nullable":true,"type":"string","enum":["classic","gherkin"]},"params":{"type":"object","additionalProperties":{"type":"string"}},"param_groups":{"type":"array","description":"List parameter groups by name only. Add their values in the 'params' field","nullable":true,"items":{"type":"array","description":"A list of parameters in group","items":{"type":"string","description":"A name of the parameter"}}},"relations":{"$ref":"#/components/schemas/ResultRelations"},"message":{"type":"string","nullable":true},"defect":{"type":"boolean","description":"If true and the result is failed, the defect associated with the result will be created"}},"required":["title","execution"]}}}},"responses":{"202":{"description":"OK","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"status":{"type":"boolean"}}},{"type":"object","properties":{"result":{"type":"object","properties":{"case_id":{"type":"integer","format":"int64","nullable":true},"hash":{"type":"string"}}}}}]}}}},"400":{"description":"Bad Request"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"},"422":{"description":"Unprocessable Entity"}}}},"/{project_code}/run/{run_id}/results":{"post":{"summary":"Bulk create test run result","description":"This method allows to create several test run results at once.\n\nIf there is no free space left in your team account, when attempting to upload an attachment, e.g., through reporters, you will receive an error with code 507 - Insufficient Storage.\n","operationId":"create-results-v2","tags":["results"],"parameters":[{"name":"project_code","in":"path","required":true,"schema":{"type":"string"}},{"name":"run_id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"title":"CreateResultsRequestV2","properties":{"results":{"type":"array","items":{"$ref":"#/paths/~1%7Bproject_code%7D~1run~1%7Brun_id%7D~1result/post/requestBody/content/application~1json/schema"}}}}}}},"responses":{"202":{"description":"OK","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/paths/~1%7Bproject_code%7D~1run~1%7Brun_id%7D~1result/post/responses/202/content/application~1json/schema/allOf/0"}]}}}},"400":{"description":"Bad Request"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"},"422":{"description":"Unprocessable Entity"}}}}},"components":{"schemas":{"ResultStep":{"type":"object","properties":{"data":{"title":"ResultStepData","type":"object","properties":{"action":{"type":"string"},"expected_result":{"type":"string"},"input_data":{"type":"string"},"attachments":{"type":"array","items":{"type":"string"}}},"required":["action"]},"execution":{"$ref":"#/components/schemas/ResultStepExecution"},"steps":{"type":"array","description":"Nested steps will be here. The same structure is used for them.","items":{"type":"object"}}}},"ResultExecution":{"type":"object","properties":{"start_time":{"type":"number","description":"Unix epoch time in seconds (whole part) and milliseconds (fractional part).","format":"double","nullable":true},"end_time":{"type":"number","description":"Unix epoch time in seconds (whole part) and milliseconds (fractional part).","format":"double","nullable":true},"status":{"type":"string","description":"Can have the following values passed, failed, blocked, skipped, invalid + custom statuses"},"duration":{"type":"integer","description":"Duration of the test execution in milliseconds.","format":"int64","nullable":true},"stacktrace":{"type":"string","nullable":true},"thread":{"type":"string","nullable":true}},"required":["status"]},"ResultStepExecution":{"type":"object","properties":{"start_time":{"type":"number","description":"Unix epoch time in seconds (whole part) and milliseconds (fractional part).","format":"double","nullable":true},"end_time":{"type":"number","description":"Unix epoch time in seconds (whole part) and milliseconds (fractional part).","format":"double","nullable":true},"status":{"type":"string","enum":["passed","failed","blocked","skipped","in_progress"]},"duration":{"type":"integer","description":"Duration of the test step execution in milliseconds.","format":"int64","nullable":true},"comment":{"type":"string"},"attachments":{"type":"array","items":{"type":"string"}}},"required":["status"]},"ResultRelations":{"type":"object","title":"Relation","nullable":true,"properties":{"suite":{"type":"object","title":"RelationSuite","nullable":true,"properties":{"data":{"type":"array","items":{"type":"object","title":"RelationSuiteItem","properties":{"title":{"type":"string"},"public_id":{"type":"integer","format":"int64","nullable":true}},"required":["title"]}}},"required":["data"]}}},"ResultStatus":{"type":"string"}},"securitySchemes":{"TokenAuth":{"type":"apiKey","in":"header","name":"Token"}}},"security":[{"TokenAuth":[]}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Qase.io TestOps API v2",
+    "description": "Qase TestOps API v2 Specification.",
+    "termsOfService": "https://qase.io/terms",
+    "version": "2.0.0",
+    "contact": {
+      "name": "Qase.io",
+      "url": "https://qase.io",
+      "email": "support@qase.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://github.com/qase-tms/specs/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "attachments"
+    },
+    {
+      "name": "authors"
+    },
+    {
+      "name": "cases"
+    },
+    {
+      "name": "custom-fields"
+    },
+    {
+      "name": "environments"
+    },
+    {
+      "name": "defects"
+    },
+    {
+      "name": "plans"
+    },
+    {
+      "name": "projects"
+    },
+    {
+      "name": "results"
+    },
+    {
+      "name": "milestones"
+    },
+    {
+      "name": "runs"
+    },
+    {
+      "name": "search"
+    },
+    {
+      "name": "shared-steps"
+    },
+    {
+      "name": "suites"
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api.qase.io/v2",
+      "description": "The production API server."
+    }
+  ],
+  "paths": {
+    "/{project_code}/run/{run_id}/result": {
+      "post": {
+        "summary": "Create test run result",
+        "description": "This method allows to create single test run result.\n\nIf there is no free space left in your team account, when attempting to upload an attachment, e.g., through reporters, you will receive an error with code 507 - Insufficient Storage.\n",
+        "operationId": "create-result-v2",
+        "tags": [
+          "results"
+        ],
+        "parameters": [
+          {
+            "name": "project_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "If passed, used as an idempotency key"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "signature": {
+                    "type": "string"
+                  },
+                  "testops_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "nullable": true,
+                    "description": "ID of the test case. Cannot be specified together with testopd_ids."
+                  },
+                  "testops_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "nullable": true,
+                    "description": "IDs of the test cases. Cannot be specified together with testopd_id."
+                  },
+                  "execution": {
+                    "$ref": "#/components/schemas/ResultExecution"
+                  },
+                  "fields": {
+                    "type": "object",
+                    "properties": {
+                      "author": {
+                        "type": "string",
+                        "description": "Author of the related test case (member id, name or email). If set and test case auto-creation is enabled, the author will be used to create the test case"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "preconditions": {
+                        "type": "string"
+                      },
+                      "postconditions": {
+                        "type": "string"
+                      },
+                      "layer": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string"
+                      },
+                      "priority": {
+                        "type": "string"
+                      },
+                      "behavior": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "muted": {
+                        "type": "string"
+                      },
+                      "is_flaky": {
+                        "type": "string"
+                      },
+                      "executed_by": {
+                        "type": "string",
+                        "description": "User who executed the test (member id, name or email)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ResultStep"
+                    }
+                  },
+                  "steps_type": {
+                    "nullable": true,
+                    "type": "string",
+                    "enum": [
+                      "classic",
+                      "gherkin"
+                    ]
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "param_groups": {
+                    "type": "array",
+                    "description": "List parameter groups by name only. Add their values in the 'params' field",
+                    "nullable": true,
+                    "items": {
+                      "type": "array",
+                      "description": "A list of parameters in group",
+                      "items": {
+                        "type": "string",
+                        "description": "A name of the parameter"
+                      }
+                    }
+                  },
+                  "relations": {
+                    "$ref": "#/components/schemas/ResultRelations"
+                  },
+                  "message": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "defect": {
+                    "type": "boolean",
+                    "description": "If true and the result is failed, the defect associated with the result will be created"
+                  }
+                },
+                "required": [
+                  "title",
+                  "execution"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "object",
+                          "properties": {
+                            "case_id": {
+                              "type": "integer",
+                              "format": "int64",
+                              "nullable": true
+                            },
+                            "hash": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/{project_code}/run/{run_id}/results": {
+      "post": {
+        "summary": "Bulk create test run result",
+        "description": "This method allows to create several test run results at once.\n\nIf there is no free space left in your team account, when attempting to upload an attachment, e.g., through reporters, you will receive an error with code 507 - Insufficient Storage.\n",
+        "operationId": "create-results-v2",
+        "tags": [
+          "results"
+        ],
+        "parameters": [
+          {
+            "name": "project_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "CreateResultsRequestV2",
+                "properties": {
+                  "results": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/paths/~1%7Bproject_code%7D~1run~1%7Brun_id%7D~1result/post/requestBody/content/application~1json/schema"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1%7Bproject_code%7D~1run~1%7Brun_id%7D~1result/post/responses/202/content/application~1json/schema/allOf/0"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResultStep": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "title": "ResultStepData",
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "input_data": {
+                "type": "string"
+              },
+              "attachments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "execution": {
+            "$ref": "#/components/schemas/ResultStepExecution"
+          },
+          "steps": {
+            "type": "array",
+            "description": "Nested steps will be here. The same structure is used for them.",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "ResultExecution": {
+        "type": "object",
+        "properties": {
+          "start_time": {
+            "type": "number",
+            "description": "Unix epoch time in seconds (whole part) and milliseconds (fractional part).",
+            "format": "double",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "number",
+            "description": "Unix epoch time in seconds (whole part) and milliseconds (fractional part).",
+            "format": "double",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Can have the following values passed, failed, blocked, skipped, invalid + custom statuses"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Duration of the test execution in milliseconds.",
+            "format": "int64",
+            "nullable": true
+          },
+          "stacktrace": {
+            "type": "string",
+            "nullable": true
+          },
+          "thread": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ResultStepExecution": {
+        "type": "object",
+        "properties": {
+          "start_time": {
+            "type": "number",
+            "description": "Unix epoch time in seconds (whole part) and milliseconds (fractional part).",
+            "format": "double",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "number",
+            "description": "Unix epoch time in seconds (whole part) and milliseconds (fractional part).",
+            "format": "double",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "blocked",
+              "skipped",
+              "in_progress"
+            ]
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Duration of the test step execution in milliseconds.",
+            "format": "int64",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ResultRelations": {
+        "type": "object",
+        "title": "Relation",
+        "nullable": true,
+        "properties": {
+          "suite": {
+            "type": "object",
+            "title": "RelationSuite",
+            "nullable": true,
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "RelationSuiteItem",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "public_id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        }
+      },
+      "ResultStatus": {
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Token"
+      }
+    }
+  },
+  "security": [
+    {
+      "TokenAuth": []
+    }
+  ]
+}
