@@ -1,6 +1,7 @@
 ---
 title: Delete run
-excerpt: This method completely deletes a run from repository.
+excerpt: |
+  This method completely deletes a run from repository.
 api:
   file: qaseio-testops-api-v1.json
   operationId: delete-run

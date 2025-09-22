@@ -1,6 +1,6 @@
 ---
 title: Update external issues for runs
-excerpt: >-
+excerpt: >
   This method allows you to update links between test runs and external issues
   (such as Jira tickets).
 

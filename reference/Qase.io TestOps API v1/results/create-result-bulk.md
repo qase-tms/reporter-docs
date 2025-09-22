@@ -1,6 +1,6 @@
 ---
 title: Bulk create test run result
-excerpt: >-
+excerpt: >
   This method allows to create a lot of test run result at once.
 
 

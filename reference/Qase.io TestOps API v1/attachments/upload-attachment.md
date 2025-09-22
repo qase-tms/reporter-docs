@@ -1,6 +1,6 @@
 ---
 title: Upload attachment
-excerpt: |-
+excerpt: |
   This method allows to upload attachment to Qase.
   Max upload size:
   * Up to 32 Mb per file

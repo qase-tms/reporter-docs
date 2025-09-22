@@ -1,6 +1,7 @@
 ---
 title: Get all milestones
-excerpt: This method allows to retrieve all milestones stored in selected project.
+excerpt: |
+  This method allows to retrieve all milestones stored in selected project.
 api:
   file: qaseio-testops-api-v1.json
   operationId: get-milestones

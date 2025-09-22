@@ -1,6 +1,6 @@
 ---
 title: Get all test run results
-excerpt: |-
+excerpt: |
   This method allows to retrieve all test run
   results stored in selected project.
 api:

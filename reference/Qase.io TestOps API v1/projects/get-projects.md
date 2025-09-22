@@ -1,6 +1,6 @@
 ---
 title: Get All Projects
-excerpt: |-
+excerpt: |
   This method allows to retrieve all projects available
   for your account. You can limit and offset params
   to paginate.
