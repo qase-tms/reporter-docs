@@ -122,10 +122,6 @@ Qase integrates with your CI/CD pipelines so you can trigger automated test runs
   </tbody>
 </Table>
 
-```
- Qase Test Run → CI/CD Pipeline → Run Tests + Qase Reporter → Qase Updates Run with Results
-```
-
 ## Mapping Environment Variables
 
 Qase currently sends:
@@ -144,10 +140,7 @@ You must map them inside your pipeline. Syntax depends on your CI/CD tool, but c
 # General pattern (adjust for your CI/CD platform)
 export QASE_TESTOPS_RUN_ID=$QASE_RUN_ID
 export QASE_TESTOPS_PROJECT_CODE=$QASE_PROJECT_CODE
-run-your-tests-command
 ```
-
-<br />
 
 ### Examples of where to put this:
 
@@ -178,12 +171,6 @@ run-your-tests-command
 * **Unique Run IDs:** Qase generates a new run ID each time you trigger a run. Do **not hardcode** run IDs.
 
 <br />
-
-### Putting It All Together
-
-In essence:
-
-Qase Test Run → CI/CD Pipeline → Run Tests + Qase Reporter → Qase Updates Run with Results
 
 <br />
 
