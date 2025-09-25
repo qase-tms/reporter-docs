@@ -172,7 +172,7 @@ export QASE_TESTOPS_PROJECT_CODE=$QASE_PROJECT_CODE
 
 <br />
 
-//////  ###Not to be include in this doccument, part below this will be deleted later
+//////  ###Not to include in this doccument, part below this will be deleted later
 
 Qase allow you to integrate the CI/CD pipeline that enables you to trigger your automated test run from Qase.
 
