@@ -18,7 +18,7 @@ Qase integrates with your CI/CD pipelines so you can trigger automated test runs
 
 ## The General Flow
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -148,7 +148,7 @@ run-your-tests-command
 ### Examples of where to put this:
 
 * GitHub Actions: under `env:` block
-* GitLab CI: in `variables:` 
+* GitLab CI: in `variables:`
 * Bitbucket Pipelines: in `script:`section
 * Jenkins: in `environment` block
 
@@ -164,8 +164,9 @@ run-your-tests-command
 * Parallel Jobs: Each parallel job can use the same QASE_TESTOPS_RUN_ID if you’re splitting tests across workers.
 * Debugging: If the run in Qase is empty, check that:
 * Variable names are mapped correctly.
-* Reporter is configured and installed properly.
-* Your tests actually executed and produced results.
+
+             Your tests actually executed and produced results.
+
 * Unique Run IDs: Qase generates a new run ID when you trigger a run. Do not hardcode run IDs.
 
 <br />
