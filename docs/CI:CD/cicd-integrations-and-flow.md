@@ -122,6 +122,10 @@ Qase integrates with your CI/CD pipelines so you can trigger automated test runs
   </tbody>
 </Table>
 
+```
+ Qase Test Run → CI/CD Pipeline → Run Tests + Qase Reporter → Qase Updates Run with Results
+```
+
 ## Mapping Environment Variables
 
 Qase currently sends:
@@ -158,20 +162,28 @@ run-your-tests-command
 * CLI Option (qasectl): For teams without reporters, qasectl can upload JUnit/Allure style reports back to Qase after a run.
 * Make sure the reporter or CLI has access to your QASE_API_TOKEN (keep it secret in your CI/CD platform).
 
-## Tips & Best Practices
+<br />
 
-* API Token Security: Store it as a secret variable in your CI/CD tool, not in plaintext.
-* Parallel Jobs: Each parallel job can use the same QASE_TESTOPS_RUN_ID if you’re splitting tests across workers.
-* Debugging: If the run in Qase is empty, check that:
-* Variable names are mapped correctly.
+### Tips & Best Practices
 
-             Your tests actually executed and produced results.
+* **API Token Security:** Store your API token as a **secret variable** in your CI/CD tool — never in plaintext.
 
-* Unique Run IDs: Qase generates a new run ID when you trigger a run. Do not hardcode run IDs.
+* **Parallel Jobs:** Each parallel job can use the same `QASE_TESTOPS_RUN_ID` if you’re splitting tests across workers.
+
+* **Debugging:** If a run in Qase appears empty, check the following:
+  * Variable names are mapped correctly.
+  * The reporter is installed and configured properly.
+  * Your tests actually executed and produced results.
+
+* **Unique Run IDs:** Qase generates a new run ID each time you trigger a run. Do **not hardcode** run IDs.
 
 <br />
 
-<br />
+### Putting It All Together
+
+In essence:
+
+Qase Test Run → CI/CD Pipeline → Run Tests + Qase Reporter → Qase Updates Run with Results
 
 <br />
 
