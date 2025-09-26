@@ -1,5 +1,5 @@
 ---
-title: CI/CD integrations and flow
+title: CI/CD integrations general flow
 deprecated: false
 hidden: true
 metadata:
