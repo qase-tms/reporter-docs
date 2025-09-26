@@ -142,18 +142,20 @@ export QASE_TESTOPS_RUN_ID=$QASE_RUN_ID
 export QASE_TESTOPS_PROJECT_CODE=$QASE_PROJECT_CODE
 ```
 
-### Examples of where to put this:
+#### Examples of where to put this:
 
 * GitHub Actions: under `env:` block
 * GitLab CI: in `variables:`
 * Bitbucket Pipelines: in `script:`section
 * Jenkins: in `environment` block
 
+This mapping ensures that test results are uploaded to the correct run in Qase.
+
 ## Using the Qase Reporter / CLI
 
 * Language SDKs: Install the Qase reporter matching your test framework (Java, JS, Python, etc.).
-* CLI Option (qasectl): For teams without reporters, qasectl can upload JUnit/Allure/XCtest style reports back to Qase after a run.
-* Make sure the reporter or CLI has access to your QASE_API_TOKEN (keep it secret in your CI/CD platform).
+* CLI Option (qasectl): For teams without reporters, qasectl can upload JUnit/Allure/XCtest/Qase style reports back to Qase after a run.
+* Make sure the reporter or CLI has access to your QASE_TESTOPS_API_TOKEN (keep it secret in your CI/CD platform).
 
 <br />
 
@@ -169,3 +171,7 @@ export QASE_TESTOPS_PROJECT_CODE=$QASE_PROJECT_CODE
   * Your tests actually executed and produced results.
 
 * **Unique Run IDs:** Qase generates a new run ID each time you trigger a run. Do **not hardcode** run IDs.
+
+<br />
+
+Additional Resources: Qase SDKs & Reporters: <Anchor label="https://github.com/qase-tms" target="_blank" href="https://github.com/qase-tms">https\://github.com/qase-tms</Anchor>
