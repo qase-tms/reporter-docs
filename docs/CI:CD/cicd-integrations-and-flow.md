@@ -174,4 +174,6 @@ This mapping ensures that test results are uploaded to the correct run in Qase.
 
 <br />
 
-**Additional Resources**: Qase SDKs & Reporters: <Anchor label="[https://github.com/qase-tms](https://github.com/qase-tms)" target="_blank" href="https://github.com/qase-tms" />
+**Additional Resources**: Qase SDKs & Reporters: <Anchor label="(https://github.com/qase-tms)" target="_blank" href="https://github.com/qase-tms">(https\://github.com/qase-tms)</Anchor>
+
+<br />
