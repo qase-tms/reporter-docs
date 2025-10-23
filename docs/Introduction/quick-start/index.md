@@ -29,7 +29,7 @@ A reporter is a module or plugin that listens to events from your test runner (l
 
 In our case, Qase reporters collect execution details like test status, duration, and error messages — and then send that data to your Qase project via the API. This lets you automatically sync test results with your Qase projects.
 
-A quick clarification here: reporters don’t run your tests — that’s still the job of your test runner. Reporters do not execute tests — that’s the job of the test runner. Instead, they observe and react to test events, meaning they can’t influence how tests are run or their outcomes, only how results are recorded or reported.
+A quick clarification here: Reporters do not execute tests — that’s the job of the test runner. Instead, they observe and react to test events, meaning they can’t influence how tests are run or their outcomes, only how results are recorded or reported.
 
 So if when you're configuring the setup (like which files to include or how to parallelize), you’ll still want to check your test runner’s official documentation.
 
