@@ -1083,7 +1083,7 @@
         "tags": [
           "custom-fields"
         ],
-        "summary": "Get Custom Field by id",
+        "summary": "Get Custom Field",
         "description": "This method allows to retrieve custom field.\n",
         "parameters": [
           {
@@ -1123,7 +1123,7 @@
         "tags": [
           "custom-fields"
         ],
-        "summary": "Delete Custom Field by id",
+        "summary": "Delete Custom Field",
         "description": "This method allows to delete custom field.\n",
         "parameters": [
           {
@@ -1163,7 +1163,7 @@
         "tags": [
           "custom-fields"
         ],
-        "summary": "Update Custom Field by id",
+        "summary": "Update Custom Field",
         "description": "This method allows to update custom field.\n",
         "parameters": [
           {
@@ -6686,17 +6686,10 @@
                         },
                         "type": {
                           "type": "string"
-                        },
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/paths/~1case~1%7Bcode%7D/post/requestBody/content/application~1json/schema/properties/parameters/items/oneOf/1"
-                          }
                         }
                       },
                       "required": [
-                        "type",
-                        "items"
+                        "type"
                       ]
                     },
                     {
@@ -6709,11 +6702,13 @@
                             "single"
                           ]
                         },
-                        "items": {
-                          "minItems": 1,
-                          "maxItems": 1
+                        "item": {
+                          "$ref": "#/paths/~1case~1%7Bcode%7D/post/requestBody/content/application~1json/schema/properties/parameters/items/oneOf/1"
                         }
-                      }
+                      },
+                      "required": [
+                        "item"
+                      ]
                     }
                   ]
                 },
@@ -6733,9 +6728,16 @@
                           ]
                         },
                         "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/paths/~1case~1%7Bcode%7D/post/requestBody/content/application~1json/schema/properties/parameters/items/oneOf/1"
+                          },
                           "minItems": 2
                         }
-                      }
+                      },
+                      "required": [
+                        "items"
+                      ]
                     }
                   ]
                 }

@@ -1,5 +1,5 @@
 ---
-title: Delete Custom Field by id
+title: Delete Custom Field
 excerpt: |
   This method allows to delete custom field.
 api:

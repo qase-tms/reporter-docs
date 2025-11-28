@@ -1,5 +1,5 @@
 ---
-title: Update Custom Field by id
+title: Update Custom Field
 excerpt: |
   This method allows to update custom field.
 api:

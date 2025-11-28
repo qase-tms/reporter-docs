@@ -1,5 +1,5 @@
 ---
-title: Get Custom Field by id
+title: Get Custom Field
 excerpt: |
   This method allows to retrieve custom field.
 api:
