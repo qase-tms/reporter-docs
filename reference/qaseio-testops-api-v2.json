@@ -17,46 +17,10 @@
   },
   "tags": [
     {
-      "name": "attachments"
-    },
-    {
-      "name": "authors"
-    },
-    {
-      "name": "cases"
-    },
-    {
       "name": "custom-fields"
     },
     {
-      "name": "environments"
-    },
-    {
-      "name": "defects"
-    },
-    {
-      "name": "plans"
-    },
-    {
-      "name": "projects"
-    },
-    {
       "name": "results"
-    },
-    {
-      "name": "milestones"
-    },
-    {
-      "name": "runs"
-    },
-    {
-      "name": "search"
-    },
-    {
-      "name": "shared-steps"
-    },
-    {
-      "name": "suites"
     }
   ],
   "servers": [
@@ -241,12 +205,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "boolean"
-                        }
-                      }
+                      "$ref": "#/paths/~1custom_field/get/responses/200/content/application~1json/schema/allOf/0"
                     },
                     {
                       "type": "object",
@@ -342,7 +301,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/paths/~1%7Bproject_code%7D~1run~1%7Brun_id%7D~1result/post/responses/202/content/application~1json/schema/allOf/0"
+                      "$ref": "#/paths/~1custom_field/get/responses/200/content/application~1json/schema/allOf/0"
                     }
                   ]
                 }
@@ -363,6 +322,189 @@
           },
           "422": {
             "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/custom_field": {
+      "get": {
+        "operationId": "get-custom-fields-v2",
+        "tags": [
+          "custom-fields"
+        ],
+        "summary": "Get all Custom Fields",
+        "description": "This method allows to retrieve and filter custom fields.\n",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "entity",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "case",
+                "run",
+                "defect"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "string",
+                "text",
+                "number",
+                "checkbox",
+                "selectbox",
+                "radio",
+                "multiselect",
+                "url",
+                "user",
+                "datetime"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "description": "A number of entities in result set.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "description": "How many entities should be skipped.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 100000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom Field list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer"
+                            },
+                            "filtered": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "entities": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/CustomField"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
+    "/custom_field/{id}": {
+      "get": {
+        "operationId": "get-custom-field-v2",
+        "tags": [
+          "custom-fields"
+        ],
+        "summary": "Get Custom Field",
+        "description": "This method allows to retrieve custom field.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Custom Field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/paths/~1custom_field/get/responses/200/content/application~1json/schema/allOf/0"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "$ref": "#/components/schemas/CustomField"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Not Found."
+          },
+          "429": {
+            "description": "Too Many Requests."
           }
         }
       }
@@ -531,6 +673,113 @@
       },
       "ResultStatus": {
         "type": "string"
+      },
+      "CustomField": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "entity": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "default_value": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldOption"
+            }
+          },
+          "is_required": {
+            "type": "boolean"
+          },
+          "is_visible": {
+            "type": "boolean"
+          },
+          "is_filterable": {
+            "type": "boolean"
+          },
+          "is_enabled_for_all_projects": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-30T19:23:59+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-30T19:23:59+00:00"
+          },
+          "projects_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CustomFieldOption": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_default": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "read_only": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "is_internal": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "behaviour": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
       }
     },
     "securitySchemes": {
