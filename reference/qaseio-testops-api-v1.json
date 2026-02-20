@@ -6421,6 +6421,13 @@
           },
           "attachments": {
             "$ref": "#/components/schemas/AttachmentHashList"
+          },
+          "steps": {
+            "type": "array",
+            "description": "Nested steps will be here. The same structure is used for them.",
+            "items": {
+              "type": "object"
+            }
           }
         },
         "required": [
@@ -6447,6 +6454,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AttachmentHash"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "description": "Nested steps will be here. The same structure is used for them.",
+            "items": {
+              "type": "object"
             }
           }
         }
