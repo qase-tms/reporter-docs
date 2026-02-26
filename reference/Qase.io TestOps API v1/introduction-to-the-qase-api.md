@@ -16,7 +16,9 @@ You can try using the API on the page [API Reference](https://developers.qase.io
 
 ## API Rate limits
 
-Your application can make up to 600 API requests per minute.
+Your application may send up to 1,000 API requests per minute per user. This limit applies (per user) whether the requests are made using a personal access token or an app token.
+
+In addition, there is a separate limit of 3,000 API requests per minute per IP address.
 
 For Enterprise customers, the limits can be changed.
 
@@ -34,9 +36,9 @@ Qase API expects for the API key to be included in all API requests to the serve
 
 All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure). Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
-> 📘
->
-> You must replace API\_TOKEN with your personal API key.
+<Callout icon="📘" theme="info">
+  You must replace API_TOKEN with your personal API key.
+</Callout>
 
 ## Access rights
 
