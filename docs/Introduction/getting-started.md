@@ -1,5 +1,5 @@
 ---
-title: API Reporters
+title: Reporters
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,9 +10,11 @@ metadata:
 next:
   description: ''
 ---
-## What are they?
+## Learn a bit more about Qase Reporters
 
-Qase API reporters are packages we maintain to help you integrate your automated testing framework with Qase. Think of them as the bridge between your test code and your test runs in Qase — they collect your test results and push them into Qase automatically, so you can track everything in one place.
+Qase reporters are open-source packages maintained by Qase that integrate your test runner with Qase app. 
+
+They act as the bridge between your test code and your test runs in Qase, collecting results as tests execute and pushing them to Qase automatically, so everything is tracked in one place.
 
 We’ve got reporters for a range of frameworks including, in JavaScript, Python, Java, PHP, and more. You’ll find all of them on our [GitHub](https://github.com/qase-tms). If your framework isn’t supported out of the box, don’t worry — you can use our SDKs and public API to build a custom integration.
 
