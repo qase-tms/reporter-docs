@@ -1,7 +1,7 @@
 ---
 title: Start here
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
