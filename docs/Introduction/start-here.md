@@ -13,6 +13,8 @@ __Test frameworks_, _test runners_, and _reporters_ each describe a distinct lay
 
 A useful rule of thumb: you **pick your Qase reporter based on which test runner you're using**. So understanding the difference between these three first will make the rest of this guide click into place.
 
+<br />
+
 ## Test Frameworks: helps you write tests
 
 A test framework is the foundation of your test suite. It gives you the structure, conventions  and building blocks needed to write tests. Think of it as the language you use to describe what your application should do.
@@ -27,6 +29,8 @@ Frameworks provide:
 **Examples**: Playwright Test, pytest, Jest, Mocha, Robot Framework, JUnit
 
 A test framework on its own doesn't run your tests or report results, it just defines them. That's where the next piece comes in.
+
+<br />
 
 ## Test Runners: executes your tests
 
@@ -43,6 +47,8 @@ The test runner is responsible for:
 
 Once the runner finishes, you have results, but they're raw. They live in memory or a local output file. To do anything meaningful with them, like view a formatted report or send them to a test management platform, you need a reporter.
 
+<br />
+
 ## Reporters: help capture, create and share results
 
 A reporter listens to the test runner as it executes tests and transforms the raw results into something consumable. That could be a formatted summary in your terminal, an HTML report you can open in a browser, or a structured file like JUnit XML that your CI platform can parse.
@@ -57,6 +63,8 @@ Reporters can:
 **Examples**: Playwright's built-in html, dot, and json reporters; pytest's --tb options and plugins like pytest-html
 
 By default, most reporters are self-contained, they capture and display results locally. But if you're using a test management platform like Qase, you need results to travel further than your local machine or CI logs. That's exactly what Qase reporters are built for.
+
+<br />
 
 ## Qase's Reporters: get your results into Qase
 
