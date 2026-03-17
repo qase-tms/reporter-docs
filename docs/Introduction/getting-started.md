@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-## What are API Reporters?
+## What are they?
 
 Qase API reporters are packages we maintain to help you integrate your automated testing framework with Qase. Think of them as the bridge between your test code and your test runs in Qase — they collect your test results and push them into Qase automatically, so you can track everything in one place.
 
@@ -38,7 +38,7 @@ We recommend starting with the introduction pages next — they’ll guide you t
 * Running your tests and reporting results
 * Common troubleshooting tips
 
-After this, you can dive into the specific reporter documentation for your language, with code examples and config options to help you get up and running quickly. 
+After this, you can dive into the specific reporter documentation for your language, with code examples and config options to help you get up and running quickly.
 
 <br />
 
