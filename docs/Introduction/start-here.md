@@ -9,7 +9,7 @@ metadata:
 
 Before diving in, it's worth getting clear on a few terms that often get used interchangeably, but mean very different things.
 
-__Test frameworks_, _test runners_, and _reporters_ each describe a distinct layer in your testing pipeline, and each one has a specific job. 
+_Test frameworks_, _test runners_, and _reporters_ each describe a distinct layer in your testing pipeline, and each one has a specific job. 
 
 A useful rule of thumb: you **pick your Qase reporter based on which test runner you're using**. So understanding the difference between these three first will make the rest of this guide click into place.
 
