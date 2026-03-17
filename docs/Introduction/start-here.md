@@ -7,6 +7,12 @@ metadata:
 ---
 # Clarifying the terminology
 
+Before diving in, it's worth getting clear on a few terms that often get used interchangeably, but mean very different things.
+
+Test _frameworks_, _test runners_, and _reporters_ each describe a distinct layer in your testing pipeline, and each one has a specific job. 
+
+A useful rule of thumb: you **pick your Qase reporter based on which test runner you're using**. So understanding the difference between these three first will make the rest of this guide click into place.
+
 ## Test Frameworks: helps you write tests
 
 A test framework is the foundation of your test suite. It gives you the tools, structure, and conventions needed to write tests. Think of it as the language and grammar you use to describe what your application should do.
