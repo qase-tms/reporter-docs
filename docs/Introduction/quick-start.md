@@ -1,5 +1,5 @@
 ---
-title: How do they work?
+title: See reporting in action
 excerpt: ''
 deprecated: false
 hidden: false
