@@ -1,5 +1,5 @@
 ---
-title: How to use this resource?
+title: What are reporters?
 deprecated: false
 hidden: false
 metadata:
