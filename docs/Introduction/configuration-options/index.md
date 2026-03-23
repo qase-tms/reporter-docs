@@ -1,5 +1,5 @@
 ---
-title: Configuration options
+title: Complete configuration
 excerpt: ''
 deprecated: false
 hidden: false
