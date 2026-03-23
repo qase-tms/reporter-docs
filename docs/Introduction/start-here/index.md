@@ -1,5 +1,5 @@
 ---
-title: Start here
+title: How to use this resource?
 deprecated: false
 hidden: false
 metadata:
