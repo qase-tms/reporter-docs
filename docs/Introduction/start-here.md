@@ -9,7 +9,7 @@ metadata:
 
 Before diving in, it's worth getting clear on a few terms that often get used interchangeably, but mean very different things.
 
-_Test frameworks_, _test runners_, and _reporters_ each describe a distinct layer in your testing pipeline, and each one has a specific job. 
+_Test frameworks_, _test runners_, and _reporters_ each describe a distinct layer in your testing pipeline, and each one has a specific job.
 
 A useful rule of thumb: you **pick your Qase reporter based on which test runner you're using**. So understanding the difference between these three first will make the rest of this guide click into place.
 
@@ -68,7 +68,7 @@ By default, most reporters are self-contained, they capture and display results 
 
 ## Qase's Reporters: get your results into Qase
 
-Qase reporters are a specific category of reporter designed to do one thing: **send your test results to Qase**. 
+Qase reporters are a specific category of reporter designed to do one thing: **send your test results to Qase**.
 
 While a standard reporter might generate an HTML file on your machine, a Qase reporter takes those same results and pushes them to Qase via the API, creating test runs, recording results against test cases, and marking runs as complete.
 
@@ -87,4 +87,6 @@ A Qase reporter does three things in sequence:
 
 <br />
 
-> A Qase reporter works alongside your existing reporters, not instead of them. For example, you can run the Qase reporter and the Playwright HTML reporter at the same time, one sends results to Qase, the other builds a local HTML report
+<Callout icon="🗒️">
+  A Qase reporter works alongside your existing reporters, not instead of them. For example, you can run the Qase reporter and the Playwright HTML reporter at the same time, one sends results to Qase, the other builds a local HTML report
+</Callout>
