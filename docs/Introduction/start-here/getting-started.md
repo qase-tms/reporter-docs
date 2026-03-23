@@ -42,5 +42,3 @@ We recommend starting with the introduction pages next — they’ll guide you t
 
 After this, you can dive into the specific reporter documentation for your language, with code examples and config options to help you get up and running quickly.
 
-<br />
-
