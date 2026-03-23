@@ -1,5 +1,5 @@
 ---
-title: See reporting in action
+title: See reporting in action in 5 mins
 excerpt: ''
 deprecated: false
 hidden: false
