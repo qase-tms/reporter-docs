@@ -1,5 +1,5 @@
 ---
-title: See reporting in action in 5 mins
+title: 'Quick Start: set it up in 5 mins'
 excerpt: ''
 deprecated: false
 hidden: false
