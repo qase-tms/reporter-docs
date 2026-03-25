@@ -6663,7 +6663,11 @@
           },
           "steps_type": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "enum": [
+              "classic",
+              "gherkin"
+            ]
           },
           "steps": {
             "type": "array",
@@ -6877,6 +6881,15 @@
           "status": {
             "type": "integer"
           },
+          "steps_type": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "gherkin"
+            ],
+            "default": "classic",
+            "description": "Determines the format of the steps field. When \"classic\", steps use the standard action/expected_result/data format. When \"gherkin\", steps use the {value: \"Given...\\nWhen...\\nThen...\"} format."
+          },
           "attachments": {
             "$ref": "#/components/schemas/AttachmentHashList"
           },
@@ -7065,6 +7078,15 @@
           "status": {
             "type": "integer"
           },
+          "steps_type": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "gherkin"
+            ],
+            "default": "classic",
+            "description": "Determines the format of the steps field. When \"classic\", steps use the standard action/expected_result/data format. When \"gherkin\", steps use the {value: \"Given...\\nWhen...\\nThen...\"} format."
+          },
           "attachments": {
             "$ref": "#/components/schemas/AttachmentHashList"
           },
@@ -7158,13 +7180,18 @@
         "type": "object",
         "properties": {
           "action": {
-            "type": "string"
+            "type": "string",
+            "description": "Step action text. Used for classic steps. For gherkin steps, use the \"value\" property instead."
           },
           "expected_result": {
             "type": "string"
           },
           "data": {
             "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "description": "Gherkin scenario text. Used when steps_type is \"gherkin\". Example: \"Given a user exists\\nWhen they log in\\nThen they see the dashboard\""
           },
           "position": {
             "type": "integer",
@@ -7414,7 +7441,11 @@
           },
           "steps_type": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "enum": [
+              "classic",
+              "gherkin"
+            ]
           },
           "steps": {
             "type": "array",
