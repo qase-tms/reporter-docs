@@ -1,6 +1,4 @@
 ---
-title: Update shared parameter
-excerpt: ''
 api:
   file: qaseio-testops-api-v1.json
   operationId: update-shared-parameter

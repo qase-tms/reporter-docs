@@ -1,7 +1,4 @@
 ---
-title: Get a specific milestone
-excerpt: |
-  This method allows to retrieve a specific milestone.
 api:
   file: qaseio-testops-api-v1.json
   operationId: get-milestone

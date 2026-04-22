@@ -1,7 +1,4 @@
 ---
-title: Update defect
-excerpt: |
-  This method updates a defect.
 api:
   file: qaseio-testops-api-v1.json
   operationId: update-defect

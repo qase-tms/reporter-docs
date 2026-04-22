@@ -1,6 +1,4 @@
 ---
-title: Get a specific shared parameter
-excerpt: ''
 api:
   file: qaseio-testops-api-v1.json
   operationId: get-shared-parameter

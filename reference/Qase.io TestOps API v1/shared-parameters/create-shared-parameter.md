@@ -1,6 +1,4 @@
 ---
-title: Create a new shared parameter
-excerpt: ''
 api:
   file: qaseio-testops-api-v1.json
   operationId: create-shared-parameter

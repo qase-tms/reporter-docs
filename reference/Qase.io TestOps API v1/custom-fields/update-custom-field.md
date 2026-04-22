@@ -1,7 +1,4 @@
 ---
-title: Update Custom Field
-excerpt: |
-  This method allows to update custom field.
 api:
   file: qaseio-testops-api-v1.json
   operationId: update-custom-field
