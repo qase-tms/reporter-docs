@@ -5,6 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
+<br />
+
 # Quick Start
 
 ## Choosing a Qase Reporter
@@ -16,8 +18,6 @@ Start there and select the reporter that matches your setup. The right choice de
 1. Identify the language repository — Find the repository that corresponds to your project’s stack.
 2. Locate the framework package — Within that repository, navigate to the package for your specific test runner.
 3. Follow the documentation — Each package includes installation and configuration instructions tailored to that framework.
-
-***
 
 **Notes**
 
@@ -44,22 +44,19 @@ Before you start, make sure you have your API token and project code ready.
 
 ***
 
-## Jump to your framework
+### Jump to your framework
 
-**JavaScript**  
-[Playwright](#playwright) · [Cypress](#cypress) · [Jest](#jest) · [Mocha](#mocha) · [WebdriverIO](#webdriverio) · [Newman](#newman) · [CucumberJS](#cucumberjs)
+**JavaScript** Playwright · Cypress · Jest · Mocha · WebdriverIO · Newman · CucumberJS
 
-**Python**  
-[Pytest](#pytest) · [Robot Framework](#robot-framework) · [Behave](#behave) · [Tavern](#tavern)
+**Python** Pytest · Robot Framework · Behave · Tavern
 
-**Java**  
-[JUnit 5](#junit-5) · [JUnit 4](#junit-4) · [TestNG](#testng) · [Cucumber](#cucumber-java)
+**Java** JUnit 5 · JUnit 4 · TestNG · Cucumber
 
 ***
 
-## JavaScript
+### JavaScript
 
-### Playwright
+#### Playwright
 
 **1. Install**
 
@@ -97,7 +94,7 @@ npx playwright test
 
 ***
 
-### Cypress
+#### Cypress
 
 **1. Install**
 
@@ -119,7 +116,7 @@ npx cypress run
 
 ***
 
-### Jest
+#### Jest
 
 **1. Install**
 
@@ -141,7 +138,7 @@ npx jest
 
 ***
 
-### Mocha
+#### Mocha
 
 **1. Install**
 
@@ -163,7 +160,7 @@ npx mocha
 
 ***
 
-### WebdriverIO
+#### WebdriverIO
 
 **1. Install**
 
@@ -185,7 +182,7 @@ npx wdio run wdio.conf.js
 
 ***
 
-### Newman
+#### Newman
 
 **1. Install**
 
@@ -209,7 +206,7 @@ newman run collection.json -r qase
 
 ***
 
-### CucumberJS
+#### CucumberJS
 
 **1. Install**
 
@@ -233,9 +230,9 @@ npx cucumber-js
 
 ***
 
-## Python
+### Python
 
-### Pytest
+#### Pytest
 
 **1. Install**
 
@@ -257,7 +254,7 @@ pytest
 
 ***
 
-### Robot Framework
+#### Robot Framework
 
 **1. Install**
 
@@ -281,7 +278,7 @@ robot tests/
 
 ***
 
-### Behave
+#### Behave
 
 **1. Install**
 
@@ -305,21 +302,17 @@ behave
 
 ***
 
-### Tavern
+#### Tavern
 
 ⚑ FLAG: install and run command not confirmed.
-
-**2. Set your environment variables**
-
-(Same as above)
 
 [↑ Back to top](#quick-start)
 
 ***
 
-## Java
+### Java
 
-### JUnit 5
+#### JUnit 5
 
 **1. Install**
 
@@ -346,7 +339,7 @@ mvn test
 
 ***
 
-### JUnit 4
+#### JUnit 4
 
 (Same structure)
 
@@ -354,7 +347,7 @@ mvn test
 
 ***
 
-### TestNG
+#### TestNG
 
 (Same structure)
 
@@ -362,7 +355,7 @@ mvn test
 
 ***
 
-### Cucumber (Java)
+#### Cucumber (Java)
 
 (Same structure)
 
@@ -372,9 +365,126 @@ mvn test
 
 # Configuration
 
-* Reporter modes: testops, report, and off
-* Complete configuration reference
-* Enriching results: metadata, fields & attachments
+## What are reporter settings and where to define them
+
+Reporter settings control how your test results are handled and how they appear in Qase. They define things like:
+
+* which project your results are sent to
+* what the test run is called in Qase
+* whether results are sent immediately or saved locally
+* whether a new run is created or an existing one is reused
+
+Without these settings, the reporter does not know where to send data or how to behave during a run.
+
+In the previous step, you set the minimum required values using environment variables. That was enough to get results into Qase, but it’s only one way to provide these settings.
+
+***
+
+### Why this matters
+
+At the beginning, environment variables are the fastest way to get started. They work well for quick setups and CI pipelines.
+
+As your setup grows, you may need something more structured. Environment variables are harder to track, not version-controlled, and can become inconsistent across environments.
+
+A configuration file is a file in your project where you define reporter settings in a structured format (typically JSON). It lives alongside your code, can be committed to version control, and gives you a single place to define and review behavior.
+
+Moving settings into a configuration file makes it easier to understand what’s configured without checking multiple environments.
+
+Couple of ways to configure the reporter. The reporter reads settings from:
+
+* environment variables
+
+  Example:
+
+  ```
+  QASE_MODE=testops QASE_API_TOKEN=your_api_token QASE_PROJECT_CODE=DEMO
+  ```
+
+* a configuration file
+
+```json
+{
+  "qase": {
+    "mode": "testops",
+    "testops": {
+      "api": {
+        "token": "your_api_token"
+      },
+      "project": "DEMO"
+    }
+  }
+}
+```
+
+Both are supported at the same time. The difference is how you manage and organize the values.
+
+***
+
+## Reporter-specific configuration
+
+In addition to environment variables and the main qase configuration, you can also define the same variables directly in your reporter configuration.
+
+This is common when the reporter is initialized inside your test framework (for example, Playwright). In that case, you may already be passing options to the reporter, and it can be convenient to keep everything in one place.
+
+For example, in Playwright:
+
+```ts
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  reporter: [
+    ['playwright-qase-reporter', {
+      mode: 'testops',
+      testops: {
+        api: {
+          token: 'your_api_token'
+        },
+        project: 'DEMO'
+      }
+    }]
+  ]
+});
+```
+
+This configures the same values you could set using environment variables or a qase config file.
+
+You would use reporter configuration when you want everything defined inside your test framework config, you are building a reusable setup or template, or you want configuration closer to the test runner.
+
+For framework-specific details and more examples:
+
+→ Reporter-specific configuration examples
+
+***
+
+### How the reporter reads settings
+
+The reporter supports all three configuration sources at the same time:
+
+* Environment variables
+* Qase configuration (config file)
+* Reporter configuration
+
+If the same variable is defined in multiple places, the precedence is:
+
+```
+environment variables > qase config > reporter config
+```
+
+This means:
+
+* environment variables always override everything else
+* the qase config file overrides reporter configuration
+* reporter configuration acts as the base layer
+
+This setup lets you define defaults close to your test framework, keep shared configuration in a file, and still override values in CI when needed.
+
+For example:
+
+* define project in reporter config
+* override it in the config file for shared environments
+* override it again in CI using environment variables
+
+***
 
 # Frameworks
 
@@ -393,6 +503,8 @@ mvn test
 
 * Cucumber (3–7), JUnit (4–5), TestNG
 
+***
+
 # Scenarios & Advanced
 
 * Using reporters in CI/CD pipelines
@@ -401,6 +513,8 @@ mvn test
 * Linking tests to existing Qase test cases
 * Using the Qase CLI (qasectl)
 * Report mode and local reporting
+
+***
 
 # Troubleshooting
 
