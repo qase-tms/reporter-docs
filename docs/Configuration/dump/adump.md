@@ -420,7 +420,7 @@ Both are supported at the same time. The difference is how you manage and organi
 
 ***
 
-## Reporter-specific configuration
+### Reporter-specific configuration
 
 In addition to environment variables and the main qase configuration, you can also define the same variables directly in your reporter configuration.
 
