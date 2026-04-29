@@ -9,6 +9,8 @@ Up to this point, you've been learning how to enrich your automated tests with m
 
 The answer depends on a setting in Qase that most teams never think about — until something unexpected happens.
 
+<br />
+
 ## The problem this solves
 
 Most teams start their automation journey in one of two places:
@@ -19,6 +21,8 @@ Most teams start their automation journey in one of two places:
 
 Auto-create and auto-update exist for Scenario B — and for the many teams that live somewhere in between.
 
+<br />
+
 ## Auto-create: letting Qase learn from your tests
 
 When the reporter sends a result that doesn't match any existing test case, Qase has a choice: store the result as an orphan, or create a test case for it automatically.
@@ -26,6 +30,8 @@ When the reporter sends a result that doesn't match any existing test case, Qase
 With **auto-create enabled** (the default), Qase creates a test case from the result. Everything you annotated in code — title, suite, description, fields, steps, parameters — becomes a real test case in your repository. The next time that test runs, Qase matches it to the case it created, and you start building history.
 
 This is where the metadata work from earlier pages pays off. If you annotated your test with `@qase.fields(("priority", "high"), ("layer", "API"))`, the auto-created test case in Qase will have priority "High" and layer "API." If you defined steps, the test case will have steps. Your code becomes the source of truth, and Qase reflects it.
+
+<br />
 
 ### How Qase matches results to test cases
 
@@ -251,11 +257,11 @@ When a result arrives, Qase tries to find an existing test case using a two-step
 </div>
 `}</HTMLBlock>
 
-<br />
-
 The important detail: **unlinked tests are matched by title and suite path together.** A test called "Login works" in suite "Auth > Smoke" is different from "Login works" in suite "Auth > Regression." This means your suite structure (from `describe` blocks, packages, or explicit `@qase.suite()` annotations) matters for matching — not just the test name.
 
 This also means: **if you rename a test or move it to a different suite, Qase sees it as a new test.** The old test case stays, a new one is created, and you lose the history chain. This is the same identity concept from the [Linking Tests](#) page — linking with `QaseId` gives you a stable identity that survives refactoring. Auto-create gives you convenience, but the identity is fragile.
+
+<br />
 
 ### What gets created
 
@@ -273,6 +279,8 @@ By default, only **passed** results create test cases. A test that fails on its 
 
 You can change this to "All statuses" if you want every test to create a case regardless of outcome. Teams that use Qase for tracking test development (not just test execution) often prefer this.
 
+<br />
+
 ## Auto-update: keeping Qase in sync with your code
 
 Auto-create handles the first time. Auto-update handles every time after that.
@@ -280,6 +288,8 @@ Auto-create handles the first time. Auto-update handles every time after that.
 When you change a test's description in code, add a step, or update its priority annotation — should the test case in Qase reflect that change? If your code is the source of truth, the answer is yes. That's what auto-update does.
 
 **Auto-update is off by default.** This is intentional. Many teams have test cases that were carefully written by QA engineers — with detailed descriptions, edge case notes, and context that doesn't exist in code. Turning on auto-update without thinking could overwrite that work.
+
+<br />
 
 ### When to turn it on
 
@@ -295,6 +305,8 @@ Auto-update is risky when:
 * Multiple people edit the same test cases — some in Qase, some in code
 * You're not yet annotating tests with enough metadata to replace what's in Qase
 
+<br />
+
 ### Granular control
 
 Auto-update gives you fine-grained control over what gets overwritten:
@@ -305,177 +317,38 @@ Auto-update gives you fine-grained control over what gets overwritten:
 
 This granularity exists because the real world is messy. You might want auto-update for steps (they change with the code) but not for description (your QA lead writes better descriptions than your annotations). You can have both.
 
-### The title conflict
+<br />
 
-There's one subtle interaction worth knowing about. Qase has a setting called **"Use test case titles from repository"** — when enabled, run results display the title stored in Qase, ignoring whatever the reporter sends. If you enable this _and_ enable auto-update for the title field, you'll see a warning: the title will be updated from the reporter anyway, because auto-update takes precedence.
+### Where titles live — and why it matters
 
-This isn't a bug — it's a signal that you need to decide: is the code or Qase the authority on titles? Pick one.
+When you look at a test run in Qase, you're not looking at your test cases directly. You're looking at **results** — and each result carries its own snapshot of the test case data at the time it was recorded. Title, description, fields, steps — all frozen at the moment the reporter submitted them.
+
+This is by design. If someone renames a test case next week, your historical results still show what the test was called when it actually ran. You get an accurate record of what happened, not a retroactively edited one.
+
+But this creates a question: **whose title should the result show?**
+
+By default, results display whatever the reporter sends. If your test function is called `test_user_can_checkout` and you don't set a custom title, that's what appears in the run. If you use `qase.title('User can complete checkout')`, that's what appears instead.
+
+Some teams prefer a different approach. They curate test case titles in Qase — written by QA leads, reviewed for clarity, consistent in style — and they don't want the reporter overwriting those titles with whatever the developer named the function. For this, there's a project setting: **"Use test case titles from repository."** When enabled, results display the title stored in the Qase test case, ignoring what the reporter sent.
+
+This works well — until you also enable **auto-update** with the title field selected. Now you've told Qase two contradictory things: "ignore the reporter's title on results" and "update the test case's title from the reporter." The reporter's title overwrites the test case, and then the result displays the test case's title — which is now the reporter's title anyway. Qase will show you a warning if you enable both.
+
+The fix is simple: decide who owns titles. If your team curates titles in Qase, turn on "use repository titles" and leave title out of auto-update. If your team treats code as the source of truth, leave the default and optionally enable auto-update for titles. Either approach works — just don't do both.
+
+Key changes from the previous version:
+
+* **Added the "results are snapshots" concept** — this is the foundational mental model that makes the title setting make sense. Without it, the setting feels arbitrary.
+* **Grounded in the user's reality** — "someone renames a test case next week" and "QA leads curate titles" are real team dynamics, not technical abstractions.
+* **The conflict emerges naturally** from the two use cases colliding, rather than being presented as a standalone gotcha.
+* **Ends with a clear decision framework**, not "pick one" — it
+
+<br />
 
 ## The bigger picture
 
 Auto-create and auto-update are the bridge between two worlds: the code your developers write and the test management your QA team relies on. They're what make the metadata annotations from earlier pages _useful beyond reporting_ — your code doesn't just produce results, it maintains your test repository.
 
-<HTMLBlock>{`
-<style>
-  .bp{font-family:var(--font-sans,system-ui,sans-serif);padding:28px 24px}
-  .bp-row{display:flex;align-items:stretch;gap:0}
-  .bp-node{border-radius:10px;border:1px solid;padding:14px 16px;display:flex;flex-direction:column;justify-content:center;flex:1}
-  .bp-tag{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px}
-  .bp-title{font-size:14px;font-weight:500;margin:0 0 4px}
-  .bp-items{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
-  .bp-items li{font-size:11px;display:flex;align-items:center;gap:5px}
-  .bp-items li::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
-  .bp-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 10px;flex-shrink:0;gap:4px}
-  .bp-arrow-h{height:1px;width:32px;position:relative}
-  .bp-arrow-h::after{content:'';position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid}
-  .bp-connector-label{font-size:10px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-
-  .n-code{background:#EEEDFE;border-color:#AFA9EC}
-  .n-code .bp-tag{color:#7F77DD}
-  .n-code .bp-title{color:#3C3489}
-  .n-code .bp-items li{color:#534AB7}
-  .n-code .bp-items li::before{background:#7F77DD}
-
-  .n-reporter{background:#E1F5EE;border-color:#5DCAA5}
-  .n-reporter .bp-tag{color:#1D9E75}
-  .n-reporter .bp-title{color:#085041}
-  .n-reporter .bp-items li{color:#0F6E56}
-  .n-reporter .bp-items li::before{background:#1D9E75}
-
-  .n-qase{background:#FAEEDA;border-color:#FAC775}
-  .n-qase .bp-tag{color:#BA7517}
-  .n-qase .bp-title{color:#633806}
-  .n-qase .bp-items li{color:#854F0B}
-  .n-qase .bp-items li::before{background:#BA7517}
-
-  .n-repo{background:#F1EFE8;border-color:#B4B2A9}
-  .n-repo .bp-tag{color:#5F5E5A}
-  .n-repo .bp-title{color:#2C2C2A}
-  .n-repo .bp-items li{color:#5F5E5A}
-  .n-repo .bp-items li::before{background:#888780}
-
-  .n-team{background:#FAECE7;border-color:#F0997B}
-  .n-team .bp-tag{color:#993C1D}
-  .n-team .bp-title{color:#4A1B0C}
-  .n-team .bp-items li{color:#712B13}
-  .n-team .bp-items li::before{background:#D85A30}
-
-  @media(prefers-color-scheme:dark){
-    .n-code{background:#3C3489;border-color:#7F77DD}
-    .n-code .bp-tag{color:#AFA9EC}
-    .n-code .bp-title{color:#CECBF6}
-    .n-code .bp-items li{color:#AFA9EC}
-    .n-code .bp-items li::before{background:#AFA9EC}
-
-    .n-reporter{background:#085041;border-color:#1D9E75}
-    .n-reporter .bp-tag{color:#5DCAA5}
-    .n-reporter .bp-title{color:#9FE1CB}
-    .n-reporter .bp-items li{color:#5DCAA5}
-    .n-reporter .bp-items li::before{background:#5DCAA5}
-
-    .n-qase{background:#633806;border-color:#EF9F27}
-    .n-qase .bp-tag{color:#FAC775}
-    .n-qase .bp-title{color:#FAEEDA}
-    .n-qase .bp-items li{color:#FAC775}
-    .n-qase .bp-items li::before{background:#FAC775}
-
-    .n-repo{background:#444441;border-color:#888780}
-    .n-repo .bp-tag{color:#B4B2A9}
-    .n-repo .bp-title{color:#D3D1C7}
-    .n-repo .bp-items li{color:#B4B2A9}
-    .n-repo .bp-items li::before{background:#B4B2A9}
-
-    .n-team{background:#712B13;border-color:#D85A30}
-    .n-team .bp-tag{color:#F5C4B3}
-    .n-team .bp-title{color:#FAECE7}
-    .n-team .bp-items li{color:#F0997B}
-    .n-team .bp-items li::before{background:#F0997B}
-  }
-</style>
-
-<div class="bp">
-  <div class="bp-row">
-
-    <!-- Your code -->
-    <div class="bp-node n-code">
-      <div class="bp-tag">Your code</div>
-      <div class="bp-title">Annotations &amp; steps</div>
-      <ul class="bp-items">
-        <li>titles &amp; suites</li>
-        <li>fields &amp; priority</li>
-        <li>steps &amp; params</li>
-      </ul>
-    </div>
-
-    <div class="bp-connector">
-      <div class="bp-connector-label" style="color:var(--color-text-tertiary)">sends</div>
-      <div class="bp-arrow-h" style="background:#c8c6bc"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
-    </div>
-
-    <!-- Reporter -->
-    <div class="bp-node n-reporter">
-      <div class="bp-tag">Reporter</div>
-      <div class="bp-title">Results + metadata</div>
-      <ul class="bp-items">
-        <li>batches results</li>
-        <li>creates run</li>
-        <li>uploads attachments</li>
-      </ul>
-    </div>
-
-    <div class="bp-connector">
-      <div class="bp-connector-label" style="color:var(--color-text-tertiary)">feeds</div>
-      <div class="bp-arrow-h" style="background:#c8c6bc"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
-    </div>
-
-    <!-- Qase -->
-    <div class="bp-node n-qase">
-      <div class="bp-tag">Qase</div>
-      <div class="bp-title">Auto-create &amp; update</div>
-      <ul class="bp-items">
-        <li>matches or creates cases</li>
-        <li>syncs metadata fields</li>
-        <li>builds run history</li>
-      </ul>
-    </div>
-
-    <div class="bp-connector">
-      <div class="bp-connector-label" style="color:var(--color-text-tertiary)">builds</div>
-      <div class="bp-arrow-h" style="background:#c8c6bc"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
-    </div>
-
-    <!-- Test repository -->
-    <div class="bp-node n-repo">
-      <div class="bp-tag">Test repository</div>
-      <div class="bp-title">Cases &amp; history</div>
-      <ul class="bp-items">
-        <li>organised suites</li>
-        <li>result trends</li>
-        <li>flaky test tracking</li>
-      </ul>
-    </div>
-
-    <div class="bp-connector">
-      <div class="bp-connector-label" style="color:var(--color-text-tertiary)">gives</div>
-      <div class="bp-arrow-h" style="background:#c8c6bc"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
-    </div>
-
-    <!-- Your team -->
-    <div class="bp-node n-team">
-      <div class="bp-tag">Your team</div>
-      <div class="bp-title">Visibility &amp; planning</div>
-      <ul class="bp-items">
-        <li>coverage overview</li>
-        <li>release confidence</li>
-        <li>QA + dev alignment</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-`}</HTMLBlock>
-
-<br />
+<Image align="center" width="700px" src="https://files.readme.io/d4973d82f537cf3d378c5a815c6e71ef2db95da8d10d9f7780b1e4dd85fb553b-qase_bigger_picture_v4.svg" />
 
 The practical adoption path for most teams:
 
