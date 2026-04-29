@@ -11,7 +11,7 @@ All Qase reporters read settings from the same layered system. If the same optio
 * **Environment variables** — override the file. This is how you inject secrets in CI or flip reporting on without editing anything.
 * **Runtime overrides** — the top layer. CLI flags in Python, system properties in Java, framework config in JavaScript. Use these for one-off overrides. C#, Go, and PHP stop at env vars — no third layer.
 
-<Image align="center" border={true} width="500px" src="https://files.readme.io/9df8ef778824abac1f52b55bbc2bf07cb5622ae3eda2c0bdf87acbc953b499bc-config_layer_priority_diagram.svg" className="border" />
+<Image align="center" width="700px" src="https://files.readme.io/9df8ef778824abac1f52b55bbc2bf07cb5622ae3eda2c0bdf87acbc953b499bc-config_layer_priority_diagram.svg" />
 
 ### As an example:
 
