@@ -34,6 +34,8 @@ You don't need to manage any of this manually. The reporter handles timing and s
 
 **Living documentation.** Well-named steps describe what a test _does_, not just what it's _called_. When your test has steps like "Add item to cart → Proceed to checkout → Enter payment details → Confirm order," anyone reading the result in Qase understands the test's intent — even months later, even if they've never seen the code.
 
+<br />
+
 ### A quick example
 
 In Playwright, you can use either the native `test.step()` or `qase.step()` — both are captured:
@@ -66,11 +68,13 @@ test('User can complete checkout', async ({ page }) => {
 
 If the checkout step fails, the Qase result shows three green steps and one red one. You know exactly where to look.
 
+<br />
+
 ### Nested steps
 
 Steps can contain other steps. This is useful for complex flows where a high-level action (like "Authenticate") is made up of smaller actions (like "Open login page," "Enter credentials," "Click submit"). The reporter captures the hierarchy, so in Qase you see a collapsible tree:
 
-```
+```shell
 Authentication flow              [PASSED]
   ├─ Open login page             [PASSED]
   ├─ Enter credentials           [PASSED]
@@ -82,6 +86,8 @@ Complete checkout                [FAILED]
 ```
 
 > **Tip:** Keep nesting to two or three levels. Deeper than that and the report becomes harder to scan than the code itself.
+>
+> <br />
 
 ### When to add steps — and when not to
 
@@ -89,10 +95,8 @@ Not every test needs steps. A simple unit test that asserts one thing is self-ex
 
 Steps earn their keep in **end-to-end and integration tests** — tests that do multiple things in sequence, where the failure point isn't obvious from the test name alone. If your test touches more than one page, calls more than one API, or has a setup-action-verify structure that spans more than a few lines, steps will save you time when something breaks.
 
-> **How we'd approach it:** Start by adding steps to your most-investigated tests — the ones that fail often or that multiple people need to understand. Don't retrofit your entire suite at once. Let the habit build naturally as you write new tests.
+<Callout icon="💡">
+  **How we'd approach it:** Start by adding steps to your most-investigated tests — the ones that fail often or that multiple people need to understand. Don't retrofit your entire suite at once. Let the habit build naturally as you write new tests.
+</Callout>
 
 For the exact step syntax in your framework, check the demo repository linked in the Get Started section.
-
-***
-
-Steps are supported across all ecosystems with consistent behavior — each step captures name, status, duration, and attachments:
