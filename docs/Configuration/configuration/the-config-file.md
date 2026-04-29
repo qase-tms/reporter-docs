@@ -61,27 +61,3 @@ You'll notice the API token isn't here. Keep it in an environment variable (`QAS
 There are more options available — environments, run tags, test plans, status mapping, and others. We cover them in later sections as they become relevant. For now, this is everything you need to start reporting.
 
 > **Tip:** Start minimal and add options as you need them. The reporter has sensible defaults for everything except the token and project code.
-
-### Recommended setup for a team using CI
-
-Here's what most teams end up with:
-
-```json
-{
-  "mode": "off",
-  "fallback": "report",
-  "debug": false,
-  "testops": {
-    "project": "DEMO",
-    "run": {
-      "title": "Automated regression",
-      "complete": true
-    },
-    "batch": {
-      "size": 200
-    }
-  }
-}
-```
-
-Notice `mode` is `off`. Locally, tests run without reporting. In CI, you set `QASE_MODE=testops` and `QASE_TESTOPS_API_TOKEN` as environment variables — reporting turns on without touching the file. The config file holds your defaults, CI layers on top.
