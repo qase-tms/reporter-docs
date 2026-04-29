@@ -1,8 +1,8 @@
 - configuration
 - linking-tests
+- metadata-tests-as-code
 - javascript
 - python
 - java
 - dump
 - framework-specifics
-- metadata-tests-as-code
