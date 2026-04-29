@@ -7,7 +7,7 @@ metadata:
 ---
 Every Qase reporter follows the same three-phase lifecycle: **start**, **report**, **complete**. Understanding this flow is the foundation for everything else in this section — once you see what happens by default, you'll know exactly which parts to customize.
 
-<Image align="center" width="500px" src="https://files.readme.io/6ff8405d7e9d4168d56aff3935850111fa7074ced2f7c56950d2561e8d6f1dbc-reporter_lifecycle_overview.svg" />
+<Image align="center" src="https://files.readme.io/6ff8405d7e9d4168d56aff3935850111fa7074ced2f7c56950d2561e8d6f1dbc-reporter_lifecycle_overview.svg" width="700px" />
 
 ### Start
 
