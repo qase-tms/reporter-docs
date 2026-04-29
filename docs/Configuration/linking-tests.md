@@ -52,6 +52,12 @@ When you add a Qase ID to a test, you're saying "this test _is_ case 42, no matt
 
 The syntax for adding an ID is different in every framework — your framework guide has the specifics. The concept is the same everywhere: one ID, one stable connection.
 
+> **Note:** Qase can also update existing test cases from your automated results (e.g., syncing steps or descriptions back into the case). This is off by default — look for "Update test cases from automated results" in your project settings if you want it.
+
 <br />
 
-> **Note:** Qase can also update existing test cases from your automated results (e.g., syncing steps or descriptions back into the case). This is off by default — look for "Update test cases from automated results" in your project settings if you want it.
+## How to link?
+
+Each framework has its own syntax for IDs — and for everything else you'll learn in the next sections (titles, suites, fields, steps, attachments). Rather than documenting every variation here, we maintain a demo repository for each supported reporter.
+
+Find your reporter's repo from the **Quick Start** page.
