@@ -24,5 +24,3 @@ Here's what happens under the hood:
 The reporter never interferes with your tests. If it can't reach Qase — bad token, network issue, API outage — your tests still run and finish normally. Reporting is non-blocking.
 
 Reporters are available for all major test frameworks across JavaScript, Python, Java, C#, Go, Kotlin, and PHP. The setup is the same idea everywhere: install a package, point it at your Qase project, run your tests.
-
-<br />
