@@ -1,5 +1,5 @@
 ---
-title: The config file
+title: config file
 deprecated: false
 hidden: false
 metadata:
