@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Essentials
 deprecated: false
 hidden: false
 metadata:
