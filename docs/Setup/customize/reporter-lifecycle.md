@@ -11,11 +11,13 @@ Every Qase reporter follows the same three-phase lifecycle: **start**, **report*
 
 ### Start
 
-When your test suite begins, the reporter creates a new test run in Qase. This happens automatically — you don't trigger it. The run appears in your Qase dashboard immediately, titled something like "Automated run 2025-01-15T10:30:00Z."
+When your test suite begins, the reporter creates a new test run in Qase. This happens automatically — you don't trigger it. The run appears in your Qase dashboard immediately, titled something like `Automated run 2025-01-15T10:30:00Z`.
 
 Behind the scenes, the reporter calls the Qase API to create the run, gets back a run ID, and holds onto it for the rest of the session. If you're watching your terminal, you won't see much — the reporter is intentionally quiet unless something fails.
 
 One thing worth knowing: the reporter also sets the run ID as an environment variable (`QASE_TESTOPS_RUN_ID`) after creating the run. This matters if you're running parallel test workers — they can pick up the same run ID and report into a single run instead of creating separate ones.
+
+<br />
 
 ### Report
 
@@ -30,6 +32,8 @@ See why this test failed: https://app.qase.io/run/DEMO/dashboard/123?source=logs
 ```
 
 This is one of the small things that makes automated reporting worth the setup — you don't have to go hunting for the failure in the UI.
+
+<br />
 
 ### Complete
 
