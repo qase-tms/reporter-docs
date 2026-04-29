@@ -2,7 +2,7 @@
 title: First steps
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
