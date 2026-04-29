@@ -337,13 +337,6 @@ This works well — until you also enable **auto-update** with the title field s
 
 The fix is simple: decide who owns titles. If your team curates titles in Qase, turn on "use repository titles" and leave title out of auto-update. If your team treats code as the source of truth, leave the default and optionally enable auto-update for titles. Either approach works — just don't do both.
 
-Key changes from the previous version:
-
-* **Added the "results are snapshots" concept** — this is the foundational mental model that makes the title setting make sense. Without it, the setting feels arbitrary.
-* **Grounded in the user's reality** — "someone renames a test case next week" and "QA leads curate titles" are real team dynamics, not technical abstractions.
-* **The conflict emerges naturally** from the two use cases colliding, rather than being presented as a standalone gotcha.
-* **Ends with a clear decision framework**, not "pick one" — it
-
 <br />
 
 ## The bigger picture
