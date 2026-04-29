@@ -42,7 +42,179 @@ By default, the reporter **always completes the run**. This is the right behavio
 ### The whole flow, in detail
 
 <HTMLBlock>{`
+<!-- Phase 1 -->
+<details style="margin-bottom:8px;border:1px solid #d3d1c7;border-radius:10px;overflow:hidden">
+  <summary style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;background:#f5f4f0">
+    <span style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;background:#E1F5EE;color:#085041">1</span>
+    <span style="font-size:14px;font-weight:500;color:#1a1a18;flex:1">Start — create the run</span>
+    <span style="font-size:12px;color:#888780">Suite begins</span>
+  </summary>
+  <div style="padding:16px;border-top:1px solid #d3d1c7">
+    <p style="font-size:13px;color:#5f5e5a;margin:0 0 16px;line-height:1.6">When your suite begins, the reporter automatically calls the Qase API to create a new test run and holds onto the run ID for the rest of the session.</p>
 
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#E1F5EE;color:#085041">Your tests</span></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#EEEDFE;color:#3C3489">Reporter</span></div>
+        <div style="width:100px"></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">create test run</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#FAECE7;color:#712B13">Qase API</span></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <div style="flex:1;height:0;border-top:1.5px dashed #c8c6bc;position:relative"><span style="position:absolute;left:-1px;top:-5px;border:5px solid transparent;border-right:7px solid #c8c6bc"></span></div>
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">run ID: 123</span>
+        </div>
+        <div style="width:100px"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:#f5f4f0;border-left:3px solid #1D9E75;font-size:12px;color:#5f5e5a;line-height:1.6">
+      The reporter sets <code>QASE_TESTOPS_RUN_ID</code> as an env var — parallel workers can pick this up to report into the same run.
+    </div>
+  </div>
+</details>
+
+<!-- Phase 2 -->
+<details style="margin-bottom:8px;border:1px solid #d3d1c7;border-radius:10px;overflow:hidden">
+  <summary style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;background:#f5f4f0">
+    <span style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;background:#EEEDFE;color:#3C3489">2</span>
+    <span style="font-size:14px;font-weight:500;color:#1a1a18;flex:1">Report — collect results</span>
+    <span style="font-size:12px;color:#888780">Per test</span>
+  </summary>
+  <div style="padding:16px;border-top:1px solid #d3d1c7">
+    <p style="font-size:13px;color:#5f5e5a;margin:0 0 16px;line-height:1.6">As each test finishes, the reporter collects its result and places it in an internal queue. Nothing is sent to Qase yet — it waits to send results in batches.</p>
+
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#E1F5EE;color:#085041">Your tests</span></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">test result</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#EEEDFE;color:#3C3489">Reporter</span></div>
+        <div style="width:100px"></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">test result</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="width:100px"></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">test result</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="width:100px"></div>
+      </div>
+    </div>
+
+    <div style="margin:4px 0;padding:6px 12px;border-radius:6px;background:#f5f4f0;border:1px dashed #c8c6bc;font-size:12px;color:#5f5e5a;text-align:center">
+      Results queue up inside the reporter — not sent one-by-one
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:#f5f4f0;border-left:3px solid #7F77DD;font-size:12px;color:#5f5e5a;line-height:1.6">
+      If a test fails, the reporter logs a direct link to the failure in your terminal — no hunting in the UI.
+    </div>
+  </div>
+</details>
+
+<!-- Phase 3 -->
+<details style="margin-bottom:8px;border:1px solid #d3d1c7;border-radius:10px;overflow:hidden">
+  <summary style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;background:#f5f4f0">
+    <span style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;background:#EEEDFE;color:#3C3489">3</span>
+    <span style="font-size:14px;font-weight:500;color:#1a1a18;flex:1">Batch upload — results appear in real time</span>
+    <span style="font-size:12px;color:#888780">Every 200 results</span>
+  </summary>
+  <div style="padding:16px;border-top:1px solid #d3d1c7">
+    <p style="font-size:13px;color:#5f5e5a;margin:0 0 16px;line-height:1.6">Once the queue hits 200 results, the reporter uploads the batch to Qase while your suite is still running. Results appear progressively in the dashboard.</p>
+
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#EEEDFE;color:#3C3489">Reporter</span></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">upload 200 results</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#FAECE7;color:#712B13">Qase API</span></div>
+      </div>
+    </div>
+
+    <div style="margin:8px 0 4px;padding:6px 12px;border-radius:6px;background:#f5f4f0;border:1px dashed #c8c6bc;font-size:12px;color:#5f5e5a;text-align:center">
+      Threshold reached → flush → keep running → repeat
+    </div>
+    <div style="margin:4px 0;padding:6px 12px;border-radius:6px;background:#f5f4f0;border:1px dashed #c8c6bc;font-size:12px;color:#5f5e5a;text-align:center">
+      Tests still running while this upload happens
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:#f5f4f0;border-left:3px solid #7F77DD;font-size:12px;color:#5f5e5a;line-height:1.6">
+      The upload is non-blocking — your suite doesn't pause. Results trickle into Qase in near real time.
+    </div>
+  </div>
+</details>
+
+<!-- Phase 4 -->
+<details style="margin-bottom:8px;border:1px solid #d3d1c7;border-radius:10px;overflow:hidden">
+  <summary style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;background:#f5f4f0">
+    <span style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;background:#FAECE7;color:#712B13">4</span>
+    <span style="font-size:14px;font-weight:500;color:#1a1a18;flex:1">Complete — close the run</span>
+    <span style="font-size:12px;color:#888780">Suite ends</span>
+  </summary>
+  <div style="padding:16px;border-top:1px solid #d3d1c7">
+    <p style="font-size:13px;color:#5f5e5a;margin:0 0 16px;line-height:1.6">After the last test, the reporter flushes any remaining results and marks the run complete — transitioning it from "In Progress" to Passed or Failed.</p>
+
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#EEEDFE;color:#3C3489">Reporter</span></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">upload remaining results</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px;min-width:100px;text-align:center"><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:#FAECE7;color:#712B13">Qase API</span></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">complete run 123</span>
+          <div style="flex:1;height:1px;background:#c8c6bc;position:relative"><span style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #c8c6bc"></span></div>
+        </div>
+        <div style="width:100px"></div>
+      </div>
+      <div style="display:flex;align-items:center;min-height:40px">
+        <div style="width:100px"></div>
+        <div style="width:100px;min-width:100px"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:6px;padding:0 4px">
+          <div style="flex:1;height:0;border-top:1.5px dashed #c8c6bc;position:relative"><span style="position:absolute;left:-1px;top:-5px;border:5px solid transparent;border-right:7px solid #c8c6bc"></span></div>
+          <span style="font-size:12px;color:#5f5e5a;white-space:nowrap">run 123 → Passed / Failed</span>
+        </div>
+        <div style="width:100px"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:#f5f4f0;border-left:3px solid #D85A30;font-size:12px;color:#5f5e5a;line-height:1.6">
+      By default the reporter always completes the run. If multiple CI jobs share a run, you can disable auto-complete and let only the last job close it — covered in Test Runs.
+    </div>
+  </div>
+</details>
 `}</HTMLBlock>
 
 <br />
