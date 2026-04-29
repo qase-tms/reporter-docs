@@ -96,7 +96,7 @@ Not every test needs steps. A simple unit test that asserts one thing is self-ex
 Steps earn their keep in **end-to-end and integration tests** — tests that do multiple things in sequence, where the failure point isn't obvious from the test name alone. If your test touches more than one page, calls more than one API, or has a setup-action-verify structure that spans more than a few lines, steps will save you time when something breaks.
 
 <Callout icon="💡">
-  **How we'd approach it:** Start by adding steps to your most-investigated tests — the ones that fail often or that multiple people need to understand. Don't retrofit your entire suite at once. Let the habit build naturally as you write new tests.
+  **How we'd approach it:** Start by adding steps to your most-investigated tests — the ones that fail often or that multiple people need to understand. Don't retrofit your entire suite at once. 
 </Callout>
 
 For the exact step syntax in your framework, check the demo repository linked in the Get Started section.
