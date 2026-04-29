@@ -8,7 +8,10 @@ metadata:
   description: ''
   robots: index
 next:
-  description: ''
+  pages:
+    - slug: configuration
+      title: Essentials
+      type: basic
 ---
 > **Tip:** If you just want to see Qase reporting in action before touching your own project, start with a demo repo. You'll have results in Qase within a few minutes.
 
