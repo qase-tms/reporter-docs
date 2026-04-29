@@ -4,6 +4,11 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
+next:
+  pages:
+    - slug: quick-start-1
+      title: Quick Start
+      type: basic
 ---
 You need two things from Qase before you set up a reporter: an **API token** and a **project code**.
 
