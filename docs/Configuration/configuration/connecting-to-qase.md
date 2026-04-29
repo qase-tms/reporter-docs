@@ -1,5 +1,5 @@
 ---
-title: Connecting to Qase
+title: the essentials
 deprecated: false
 hidden: false
 metadata:
