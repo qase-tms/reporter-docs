@@ -9,6 +9,8 @@ A test plan is a curated list of test cases that defines what needs to be tested
 
 The reason test plans matter for automated reporting: they're the bridge between your manual testers and your automated suite. A single plan can contain both.
 
+<br />
+
 ### The problem plans solve
 
 Most teams have a mix of manual and automated tests. The manual ones live in Qase — exploratory tests, UX walkthroughs, edge cases that aren't worth automating. The automated ones live in your repo — regression suites, API checks, integration tests. Without a plan, these two worlds report separately. Your manual testers submit results through the Qase UI. Your CI pipeline submits results through the reporter. Two different runs, two different dashboards, no unified picture.
@@ -147,8 +149,6 @@ A test plan brings them together. You create one plan that includes both manual 
 </div>
 `}</HTMLBlock>
 
-<br />
-
 1. **Create a plan in Qase** — pick the cases, assign team members to manual cases if you want.
 2. **Start a run from the plan** — Qase creates a run pre-populated with the plan's cases.
 3. **Your reporter sends automated results to the same run** — using `testops.run.id` set to the run that was created from the plan.
@@ -184,6 +184,8 @@ QASE_TESTOPS_PLAN_ID=42
 >
 > **Not all frameworks support selective execution.** JavaScript reporters, C#, Go, PHP, and Kotlin report results to a plan-linked run but don't filter the test collection. All your tests still execute — the plan association is metadata on the run, not a filter on execution.
 
+<br />
+
 ### Two ways to use plans with reporters
 
 | Approach                        | Config                                           | What happens                                                                                                     |
@@ -194,6 +196,8 @@ QASE_TESTOPS_PLAN_ID=42
 The first approach is more common — especially when you have manual testers working alongside automation. You create the run from the plan in Qase, hand the run ID to your CI job, and both sides report into the same place.
 
 The second approach is useful when you want CI to run _exactly_ the tests in a plan — nothing more, nothing less. This is common for targeted regression: "run only the cases we've flagged for this release."
+
+<br />
 
 ### When to use plans
 
