@@ -2,7 +2,7 @@
 title: What endpoints do they use?
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
