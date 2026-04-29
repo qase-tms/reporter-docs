@@ -273,6 +273,8 @@ You control which fields flow from results into new test cases. In **Project Set
 
 You can uncheck fields you don't want. For example, if your code annotations don't include severity and you'd rather set it manually in Qase, uncheck it — auto-create won't populate it, and you can fill it in later.
 
+<br />
+
 ### Status filter: not every result creates a case
 
 By default, only **passed** results create test cases. A test that fails on its first run doesn't get a case — the assumption is that you're still iterating on it.
