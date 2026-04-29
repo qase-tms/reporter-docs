@@ -1,5 +1,5 @@
 ---
-title: What are reporters?
+title: What's a reporter?
 deprecated: false
 hidden: false
 metadata:
