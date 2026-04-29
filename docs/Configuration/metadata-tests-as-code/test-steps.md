@@ -9,7 +9,7 @@ Without steps, a failed test tells you one thing: it failed. You open the result
 
 **Steps change this**. They turn a test result from a verdict into a narrative — a sequence of named actions, each with its own status, duration, and (optionally) attachments. When a test fails, you don't just know _that_ it failed — you know it got through login, loaded the dashboard, clicked "Export," and broke on "Verify download completed."
 
- That's the difference between "go investigate" and "I already know where to look."
+That's the difference between "go investigate" and "I already know where to look."
 
 <br />
 
@@ -96,27 +96,3 @@ For the exact step syntax in your framework, check the demo repository linked in
 ***
 
 Steps are supported across all ecosystems with consistent behavior — each step captures name, status, duration, and attachments:
-
-**Playwright** supports both native `test.step()` and `qase.step()`: [26-cite-0](#26-cite-0)
-
-**Python** supports both decorator and context manager patterns for steps: [26-cite-1](#26-cite-1)
-
-The Python step implementation shows the internal lifecycle — `start_step` → `yield` → `finish_step`, with automatic exception handling: [26-cite-2](#26-cite-2)
-
-**Java** uses `@Step` annotations with AspectJ interception for automatic timing and status: [26-cite-3](#26-cite-3)
-
-**Java** supports parameter interpolation in step names (`{paramName}` syntax): [26-cite-4](#26-cite-4)
-
-**C#** uses `[Step]` attributes on methods: [26-cite-5](#26-cite-5)
-
-**Go** has a dedicated `Step()` function with nested step support via a step stack: [26-cite-6](#26-cite-6)
-
-**PHP (Pest)** supports simple markers, callbacks, nested steps, and expected results: [26-cite-7](#26-cite-7)
-
-**BDD/Cucumber** frameworks automatically capture Gherkin Given/When/Then steps — no annotations needed: [26-cite-8](#26-cite-8)
-
-Attachments inside steps are automatically routed to that step (not the overall test): [26-cite-9](#26-cite-9)
-
-Best practices from the Java docs — atomic steps, descriptive names, limit nesting, attach evidence within steps: [26-cite-10](#26-cite-10)
-
-How does this land? Ready for #11 (Enriching Results: Attachments)?
