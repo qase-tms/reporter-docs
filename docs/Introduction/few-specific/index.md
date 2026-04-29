@@ -1,5 +1,5 @@
 ---
-title: How do they work?
+title: How does it work?
 excerpt: ''
 deprecated: false
 hidden: false
