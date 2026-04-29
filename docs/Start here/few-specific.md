@@ -8,7 +8,10 @@ metadata:
   description: ''
   robots: index
 next:
-  description: ''
+  pages:
+    - slug: prerequisites
+      title: Prerequisites
+      type: basic
 ---
 Qase reporters sit between your test framework and Qase. When your tests run, the reporter listens to your framework's events — test started, test passed, test failed — and sends the results to Qase in the background. You don't change how you write tests or how you run them.
 
