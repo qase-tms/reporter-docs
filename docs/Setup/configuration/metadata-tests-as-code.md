@@ -1,5 +1,5 @@
 ---
-title: 'Metadata: tests as code'
+title: 'metadata: tests as code'
 deprecated: false
 hidden: false
 metadata:
