@@ -49,5 +49,3 @@ The practical pattern: keep `qase.config.json` as your source of truth, use env 
 <br />
 
 > Note: Not all reporters offer CLI options for configuration. Eg: Javascript reporters.
-
-<br />
