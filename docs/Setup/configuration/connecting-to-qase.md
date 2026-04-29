@@ -1,5 +1,5 @@
 ---
-title: the essentials
+title: token and project code
 deprecated: false
 hidden: false
 metadata:
