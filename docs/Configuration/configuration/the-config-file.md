@@ -85,12 +85,3 @@ Here's what most teams end up with:
 ```
 
 Notice `mode` is `off`. Locally, tests run without reporting. In CI, you set `QASE_MODE=testops` and `QASE_TESTOPS_API_TOKEN` as environment variables — reporting turns on without touching the file. The config file holds your defaults, CI layers on top.
-
-***
-
-Changes from previous version:
-
-* Removed `environment` — it requires a pre-existing slug in Qase, which is a new concept we'll introduce later alongside other Qase-side references (configurations, test plans, etc.)
-* Tightened the "what's not in this file" section to hint at later coverage without listing specifics [18-cite-0](#18-cite-0) [18-cite-1](#18-cite-1) [18-cite-2](#18-cite-2)
-
-Ready for #7 (Linking Tests: Why Link)?
