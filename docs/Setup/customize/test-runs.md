@@ -112,7 +112,7 @@ When `run.id` is set, the reporter skips creation entirely and sends results str
 
 ## Linking runs to external systems
 
-If your team tracks work in Jira (or a similar tool), you can link a run to an external issue. This closes the loop between "we deployed PROJ-1234" and "here are the test results that validated it."
+If your team tracks work in Jira, you can link a run to an external issue. This closes the loop between "we deployed PROJ-1234" and "here are the test results that validated it."
 
 ```json
 {
