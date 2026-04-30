@@ -152,4 +152,4 @@ Check the `testops_id` field in the result JSON. If it's set, the result is link
 
 If you've looked at the debug log and the problem isn't obvious, send the log file to support. Don't paraphrase what you saw — send the actual file. It contains the config, the versions, the payloads, and the API responses. That's everything the support team needs to diagnose the issue without a back-and-forth.
 
-In the next article, we'll go deeper into the log file itself — where it lives, how it's structured, and how to read it efficiently. After that, we'll cover an approach for reproducing hard-to-describe problems using demo repositories — a workflow that can fast-track resolution for both you and the engineering team.
+In the article about the log file, we'll go deeper into the log file itself — where it lives, how it's structured, and how to read it efficiently. After that, we'll cover an approach for reproducing hard-to-describe problems using demo repositories — a workflow that can fast-track resolution for both you and the engineering team.
