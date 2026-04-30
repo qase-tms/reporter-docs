@@ -1,5 +1,5 @@
 ---
-title: fallback mode
+title: fallback
 deprecated: false
 hidden: false
 metadata:
@@ -16,9 +16,9 @@ When the reporter can't reach the Qase API — bad token, network issue, outage 
 
 With `fallback` set to `report`, a failed API connection causes the reporter to switch to report mode mid-run. Your tests keep running. Results are written to disk instead of the API. You can upload them later with `qase-report`.
 
-With `fallback` set to `off` (the default), a failed connection means results are silently dropped. Tests still run — the reporter never interrupts your suite — but nothing is recorded.
-
 <Image align="center" src="https://files.readme.io/1f7eb31896c89a189087d9438706f5c5da89b43568b43a86a5285fb261c37c9f-report_mode_fallback_v4.svg" />
+
+With `fallback` set to `off` (the default), a failed connection means results are silently dropped. Tests still run — the reporter never interrupts your suite — but nothing is recorded.
 
 <br />
 
