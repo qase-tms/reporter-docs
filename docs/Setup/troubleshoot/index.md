@@ -13,7 +13,7 @@ Most reporter issues fall into a few categories:
 
 * **Results not appearing in Qase** — usually a config issue (wrong mode, bad token, mismatched project code)
 * **Results appearing but looking wrong** — linked to the wrong test case, missing steps, missing attachments
-* **Performance problems** — slow test runs, timeouts during upload, memory pressure from large attachments
+* **Performance problems** — slow test runs, timeouts during upload, memory issues from large attachments
 * **Status mismatches** — your framework reports one thing, Qase shows another
 
 <br />
