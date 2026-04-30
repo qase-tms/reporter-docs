@@ -9,7 +9,7 @@ Sometimes you can't send results to Qase during the test run. Maybe your securit
 
 Report mode is for all of these situations. Instead of talking to the Qase API, the reporter writes everything — results, steps, attachments, metadata — to a local JSON file. Same data, no network required.
 
-<Image align="center" width="700px" src="https://files.readme.io/5dbfd13ddeac8d6670af689180fe68226957a01d573f5458b7c487513b746cc8-report_mode_fallback.svg" />
+<Image align="center" src="https://files.readme.io/1f7eb31896c89a189087d9438706f5c5da89b43568b43a86a5285fb261c37c9f-report_mode_fallback_v4.svg" />
 
 <br />
 
@@ -83,4 +83,4 @@ This produces a single `.html` file you can attach to a PR, email to a stakehold
 
 **Archival and compliance.** Some teams need to keep test evidence alongside their build artifacts for audit purposes. The JSON report is a complete, portable record of the test run. The HTML export makes it human-readable without any tooling.
 
-> **Tip:** Report mode pairs well with the fallback setting. If you set `fallback: report`, the reporter will automatically switch to report mode if it can't reach the Qase API — so you never lose results, even if there's an outage. We'll cover this in the next section.
+> **Tip:** Report mode pairs well with the fallback setting. If you set `fallback: report`, the reporter will automatically switch to report mode if it can't reach the Qase API — so you never lose results, even if there's an outage.
