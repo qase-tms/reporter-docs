@@ -100,10 +100,10 @@ By default, each reporter instance creates its own run and completes it when don
 
 ```mermaid
 flowchart LR
-    A["Create run\n(before tests)"] --> B["Job 1\nreports to run"]
-    A --> C["Job 2\nreports to run"]
-    A --> D["Job 3\nreports to run"]
-    B --> E["Complete run\n(after all jobs)"]
+    A["Create run (before tests)"] --> B["Job 1 reports to run"]
+    A --> C["Job 2 reports to run"]
+    A --> D["Job 3 reports to run"]
+    B --> E["Complete run (after all jobs)"]
     C --> E
     D --> E
 ```
