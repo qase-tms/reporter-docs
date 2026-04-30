@@ -1,7 +1,7 @@
 ---
 title: Deploy
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
