@@ -100,16 +100,6 @@ By default, each reporter instance creates its own run and completes it when don
 
 <Image align="center" width="700px" src="https://files.readme.io/9d0dbbed45720fad1fa42c769e9f14d035d6847cc336bc13b8377b90fe77e0ae-ci_parallel_run_lifecycle.svg" />
 
-```mermaid
-flowchart LR
-    A["Create run (before tests)"] --> B["Job 1 reports to run"]
-    A --> C["Job 2 reports to run"]
-    A --> D["Job 3 reports to run"]
-    B --> E["Complete run (after all jobs)"]
-    C --> E
-    D --> E
-```
-
 1. **Create the run externally** — before any test job starts, create a run using the Qase CLI (`qasectl`) or API and capture the run ID.
 2. **Pass the run ID to all jobs** — set `QASE_TESTOPS_RUN_ID` so every reporter instance reports to the same run.
 3. **Disable auto-completion** — set `run.complete: false` so no single job closes the run while others are still running.
