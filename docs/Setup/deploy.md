@@ -98,6 +98,8 @@ By default, each reporter instance creates its own run and completes it when don
 
 ### The solution
 
+<Image align="center" width="700px" src="https://files.readme.io/9d0dbbed45720fad1fa42c769e9f14d035d6847cc336bc13b8377b90fe77e0ae-ci_parallel_run_lifecycle.svg" />
+
 ```mermaid
 flowchart LR
     A["Create run (before tests)"] --> B["Job 1 reports to run"]
