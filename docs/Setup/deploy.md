@@ -185,8 +185,8 @@ One config file, one source of truth, CI just flips the switches.
 
 Before your first CI run with reporting enabled:
 
-* [ ] API token stored as a CI secret (not in the repo)
-* [ ] `QASE_MODE=testops` set on the test step
-* [ ] `QASE_TESTOPS_PROJECT` set (or in your config file)
-* [ ] If parallel: `QASE_TESTOPS_RUN_ID` shared across jobs, `run.complete: false`
-* [ ] If parallel: a final step to complete the run with `if: always()` (or equivalent)
+* [x] API token stored as a CI secret (not in the repo)
+* [x] `QASE_MODE=testops` set on the test step
+* [x] `QASE_TESTOPS_PROJECT` set (or in your config file)
+* [x] If parallel: `QASE_TESTOPS_RUN_ID` shared across jobs, `run.complete: false`
+* [x] If parallel: a final step to complete the run with `if: always()` (or equivalent)
