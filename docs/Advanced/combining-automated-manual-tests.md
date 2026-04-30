@@ -2,7 +2,7 @@
 title: Combining Automated + Manual tests
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
