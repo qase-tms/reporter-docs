@@ -9,8 +9,6 @@ Sometimes you can't send results to Qase during the test run. Maybe your securit
 
 Report mode is for all of these situations. Instead of talking to the Qase API, the reporter writes everything — results, steps, attachments, metadata — to a local JSON file. Same data, no network required.
 
-<Image align="center" src="https://files.readme.io/1f7eb31896c89a189087d9438706f5c5da89b43568b43a86a5285fb261c37c9f-report_mode_fallback_v4.svg" />
-
 <br />
 
 ## How it works
