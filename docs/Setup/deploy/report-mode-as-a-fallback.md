@@ -1,5 +1,5 @@
 ---
-title: report mode as a fallback
+title: report mode
 deprecated: false
 hidden: false
 metadata:
@@ -83,4 +83,4 @@ This produces a single `.html` file you can attach to a PR, email to a stakehold
 
 **Archival and compliance.** Some teams need to keep test evidence alongside their build artifacts for audit purposes. The JSON report is a complete, portable record of the test run. The HTML export makes it human-readable without any tooling.
 
-> **Tip:** Report mode pairs well with the fallback setting. If you set `fallback: report`, the reporter will automatically switch to report mode if it can't reach the Qase API — so you never lose results, even if there's an outage.
+> **Tip:** Report mode pairs well with the fallback setting. If you set `fallback: report`, the reporter will automatically switch to report mode if it can't reach the Qase API — so you never lose results, even if there's an outage. We'll cover this in the next section.
