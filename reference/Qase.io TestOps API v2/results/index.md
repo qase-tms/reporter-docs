@@ -1,6 +1,5 @@
 ---
 title: results
-excerpt: ''
 deprecated: false
 hidden: false
 metadata:
