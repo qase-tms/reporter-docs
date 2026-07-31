@@ -324,6 +324,9 @@
           "404": {
             "description": "Not Found"
           },
+          "413": {
+            "description": "Payload Too Large. Returned when the request contains more than 2000 results, or when the\ncombined length of `execution.error_context` across the batch exceeds 4194304 characters.\nIn both cases the whole batch is rejected — no results are created.\n"
+          },
           "422": {
             "description": "Unprocessable Entity"
           }
@@ -583,6 +586,11 @@
           "stacktrace": {
             "type": "string",
             "nullable": true
+          },
+          "error_context": {
+            "type": "string",
+            "nullable": true,
+            "description": "Free-form failure context captured by the reporter. For Playwright this is the content of error-context.md (test info, error details, page snapshot), so it may include rendered page content. Stored verbatim so it can be copied as raw text. Values longer than 262144 characters are silently truncated by Qase and the request still succeeds. Write-only — not returned by the result read endpoints."
           },
           "thread": {
             "type": "string",
