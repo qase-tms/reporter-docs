@@ -255,7 +255,7 @@
     "/{project_code}/run/{run_id}/results": {
       "post": {
         "summary": "Bulk create test run result",
-        "description": "This method allows to create a lot of test run result at once. If you try to send more than 200 results in a single bulk request, you will receive an error with code 413 - Payload Too Large.",
+        "description": "This method allows to create several test run results at once.\n\nIf there is no free space left in your team account, when attempting to upload an attachment, e.g., through reporters, you will receive an error with code 507 - Insufficient Storage.\n",
         "operationId": "create-results-v2",
         "tags": [
           "results"
@@ -325,7 +325,7 @@
             "description": "Not Found"
           },
           "413": {
-            "description": "Payload Too Large. Returned when the request contains more than 2000 results, or when the\ncombined length of `execution.error_context` across the batch exceeds 4194304 characters.\nIn both cases the whole batch is rejected — no results are created.\n"
+            "description": "Payload Too Large. Returned when the request contains more than 200 results, or when the\ncombined length of `execution.error_context` across the batch exceeds 4194304 characters.\nIn both cases the whole batch is rejected — no results are created.\n"
           },
           "422": {
             "description": "Unprocessable Entity"
