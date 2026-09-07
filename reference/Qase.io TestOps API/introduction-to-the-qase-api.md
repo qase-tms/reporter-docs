@@ -18,7 +18,7 @@ You can try using the API on the page [API Reference](https://developers.qase.io
 
 The following rate limits apply (per user) whether the requests are made using a personal access token or an app token.
 
-- Enterprise plan: 1,000 requests per minute
+- Enterprise plan: 1,000 requests per minute (or, Custom Limits)
 - Teams / Business (legacy): 600 requests per minute
 - Startup: 300 requests per minute
 - Free: 150 requests per minute
