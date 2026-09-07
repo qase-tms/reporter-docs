@@ -6,7 +6,7 @@ hidden: false
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
