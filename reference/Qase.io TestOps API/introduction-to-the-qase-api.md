@@ -16,9 +16,14 @@ You can try using the API on the page [API Reference](https://developers.qase.io
 
 ## API Rate limits
 
-Your application can make up to 600 API requests per minute.
+The following rate limits apply (per user) whether the requests are made using a personal access token or an app token.
 
-For Enterprise customers, the limits can be changed.
+- Enterprise plan: 1,000 requests per minute
+- Teams / Business (legacy): 600 requests per minute
+- Startup: 300 requests per minute
+- Free: 150 requests per minute
+
+In addition, there is a separate limit of 3,000 API requests per minute per IP address.
 
 Once the limit is exceeded, clients receive an HTTP `429` with a `Retry-After: X` header to indicate how long their timeout period is before they will be able to send requests again. The timeout period is set to 60 seconds once the limit is exceeded.
 
@@ -34,9 +39,9 @@ Qase API expects for the API key to be included in all API requests to the serve
 
 All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure). Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
-> 📘
->
-> You must replace API\_TOKEN with your personal API key.
+<Callout icon="📘" theme="info">
+  You must replace API_TOKEN with your personal API key.
+</Callout>
 
 ## Access rights
 
