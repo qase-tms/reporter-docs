@@ -63,10 +63,12 @@ Once either policy is exceeded, clients receive an HTTP `429` with a `Retry-Afte
 
 Retry-After: 12
 
+```json
 {
   "status": false,
   "errorMessage": "API rate limit exceeded."
 }
+```
 
 In addition, there is a separate limit of 3,000 API requests per minute per IP address. It sits well above the per-workspace limits and acts as a fallback if the rate limiting service is unavailable, so under normal conditions you will reach your workspace limit first.
 
