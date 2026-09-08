@@ -34,43 +34,44 @@ All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Sec
 
 Rate limits apply per workspace. Every API token in a workspace shares the same limit, whether the requests are made using a personal access token or an app token, so issuing another token does not give you more throughput.
 
-* Enterprise plan: 1,000 requests per minute (or, Custom Limits)
-* Teams / Business (legacy): 600 requests per minute
-* Startup: 300 requests per minute
-* Free: 150 requests per minute
+Two limits apply at the same time, and a request is served only when both of them allow it:
 
-Two policies apply at the same time. The `rpm` policy caps the sustained rate over 60 seconds, and is the plan limit listed above. The `burst` policy caps a short spike over 10 seconds. A request is served only when both policies allow it, so a workspace that stays under its per-minute limit can still be throttled if it sends those requests in a narrow burst.
+* A **sustained limit**, measured over the last 60 seconds. This is the plan limit.
+* A **burst limit**, measured over a 10 second window, which stops the whole minute's allowance being spent at once.
+
+| **Plan**                  | **Sustained (per minute)**         | **Burst (per 10 sec)** |
+| :------------------------ | :--------------------------------- | :--------------------- |
+| Enterprise                | 1,000 requests (or, Custom Limits) | 166 requests           |
+| Teams / Business (legacy) | 600 requests                       | 100 requests           |
+| Startup (legacy)          | 300 requests                       | 50 requests            |
+| Free                      | 150 requests                       | 25 requests            |
+
+The burst allowance refills continuously at the sustained rate, so over a full 10 seconds you can send the burst allowance plus what refills during it — 200 requests on a 600 per minute plan, for example. A workspace that stays under its per-minute limit can still be throttled if it sends those requests in a narrow spike.
 
 Every response tells you where you stand:
 
-* `RateLimit-Policy` — the policies in force, where `q` is the quota and `w` is the window in seconds.
-* `RateLimit` — how much of each policy is left, where `r` is the requests remaining and `t` is the seconds until that policy frees a slot.
-* `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` — a single-number mirror of the above, for older clients. They report whichever of the two policies is closer to its limit, and `X-RateLimit-Reset` is the Unix timestamp at which that window resets.
+* `RateLimit-Policy` — the limits in force, where `q` is the quota and `w` is the window in seconds.
+* `RateLimit` — how much of each limit is left, where `r` is the requests remaining and `t` is the seconds until that limit frees a slot.
+* `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` — a single-number mirror of the above, for older clients. They report whichever of the two limits is closer to being reached, and `X-RateLimit-Reset` is the Unix timestamp at which that window resets.
 
 For example, on a workspace whose plan limit is 600 requests per minute:
 
-```text
-RateLimit-Policy: "rpm";q=600;w=60, "burst";q=100;w=10
-RateLimit: "rpm";r=412;t=37, "burst";r=88;t=2
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 88
-X-RateLimit-Reset: 1756742400
-```
+`RateLimit-Policy: "rpm";q=600;w=60, "burst";q=100;w=10`<br />`RateLimit: "rpm";r=412;t=37, "burst";r=88;t=2`<br />`X-RateLimit-Limit: 100`<br />`X-RateLimit-Remaining: 88`<br />`X-RateLimit-Reset: 1756742400`
 
-Here the `X-RateLimit-*` headers describe the `burst` policy rather than the plan limit, because a spike is in progress and `burst` is the policy closer to being exhausted.
+Here the `X-RateLimit-*` headers describe the burst limit rather than the plan limit, because a spike is in progress and the burst limit is the one closer to being reached. These headers are the authoritative numbers for your workspace: if your limits have been adjusted for you, they will differ from the table above.
 
-Once either policy is exceeded, clients receive an HTTP `429` with a `Retry-After` header telling them how many seconds to wait before sending requests again:
-
-Retry-After: 12
+Once either limit is exceeded, clients receive an HTTP `429` with a `Retry-After` header telling them how many seconds to wait before sending requests again. The wait is calculated for each rejected request, so it is usually only a second or two rather than a full window:
 
 ```json
+Retry-After: 12
+
 {
   "status": false,
   "errorMessage": "API rate limit exceeded."
 }
 ```
 
-In addition, there is a separate limit of 3,000 API requests per minute per IP address. It sits well above the per-workspace limits and acts as a fallback if the rate limiting service is unavailable, so under normal conditions you will reach your workspace limit first.
+In addition, a separate per-IP limit applies as a safety net for all traffic from one address. It sits well above the per-workspace limits, so under normal conditions you will reach your workspace limit first.
 
 <br />
 
