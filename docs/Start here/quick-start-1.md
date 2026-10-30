@@ -20,11 +20,13 @@ Pick your test framework below. Each links to a ready-to-run demo repository —
 Every demo repo follows the same three steps:
 
 1. Clone the repo and install dependencies.
-2. Export your API token and project code:
+2. Export your API token, project code and API host:
    ```bash
    export QASE_TESTOPS_API_TOKEN=<your-token>
    export QASE_TESTOPS_PROJECT=<your-project-code>
+   export QASE_TESTOPS_API_HOST=qase.io  # eu.qase.io for the EU cluster
    ```
+   If your workspace is on the EU cluster (you open Qase at `app-eu.qase.io`), set `QASE_TESTOPS_API_HOST` to `eu.qase.io`. The default, `qase.io`, is the US cluster.
 3. Run the tests.
 
 Demo repositories, grouped by language:

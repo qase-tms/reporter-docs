@@ -16,6 +16,9 @@ Here's a config that covers what you need to get started:
   "debug": false,
   "testops": {
     "project": "DEMO",
+    "api": {
+      "host": "qase.io"
+    },
     "run": {
       "title": "Automated regression",
       "complete": true
@@ -36,6 +39,10 @@ Controls whether the reporter is active and where it sends results. You'll use `
 ### `fallback`
 
 What the reporter does if the primary mode fails. Set this to `report` — if the API is unreachable, the reporter saves results locally instead of losing them. You can upload them to Qase later. If you leave it as `off`, failed connections just mean lost results.
+
+### `testops.api.host`
+
+Which Qase cluster the reporter sends results to. The default, `qase.io`, is the US cluster. If your workspace is on the EU cluster (you open Qase at `app-eu.qase.io`), set it to `eu.qase.io`. You don't need the `enterprise` flag for the EU cluster.
 
 ### `testops.run`
 
@@ -60,4 +67,4 @@ You'll notice the API token isn't here. Keep it in an environment variable (`QAS
 
 There are more options available — environments, run tags, test plans, status mapping, and others. We cover them in later sections as they become relevant. For now, this is everything you need to start reporting.
 
-> **Tip:** Start minimal and add options as you need them. The reporter has sensible defaults for everything except the token and project code.
+> **Tip:** Start minimal and add options as you need them. The reporter has sensible defaults for everything except the token and project code, plus the host if your workspace is on the EU cluster.

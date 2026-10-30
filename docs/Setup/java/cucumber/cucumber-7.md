@@ -163,12 +163,15 @@ You can configure the reporter options in a separate file `qase.config.json`, pl
 {
   "testops": {
     "api": {
-      "token": "<token>"
+      "token": "<token>",
+      "host": "qase.io"
     },
     "project": "<project_code>"
   }
 } 
 ```
+
+If your workspace is on the EU cluster (you open Qase at `app-eu.qase.io`), set `host` to `eu.qase.io`. The default, `qase.io`, is the US cluster.
 
 <br />
 
