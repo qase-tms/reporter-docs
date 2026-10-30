@@ -1,0 +1,39 @@
+docs/Setup/configuration/connecting-to-qase.md
+  s_c3e47f5cf45a98::t_32a42ce8da4699 8,13,25,41-44,59-85
+docs/Setup/configuration/the-config-file.md
+  s_c3e47f5cf45a98::t_83c6a27c604f91 19-21,43-46,70
+docs/Setup/java/cucumber/cucumber-3.md
+  s_c3e47f5cf45a98::t_cb80cf52726e6d 166-167,174-175
+docs/Setup/java/cucumber/cucumber-4.md
+  s_c3e47f5cf45a98::t_f0c8e2282019fe 167-168,175-176
+docs/Setup/java/cucumber/cucumber-5.md
+  s_c3e47f5cf45a98::t_55ef8d928e8eee 168-169,176-177
+docs/Setup/java/cucumber/cucumber-6.md
+  s_c3e47f5cf45a98::t_9b548d6717e00d 163-164,171-172
+docs/Setup/java/cucumber/cucumber-7.md
+  s_c3e47f5cf45a98::t_e57b78bb076231 166-167,174-175
+docs/Setup/java/junit/junit-4.md
+  s_c3e47f5cf45a98::t_0a86f94de1105e 191,197,200-202
+docs/Setup/java/junit/junit-5.md
+  s_c3e47f5cf45a98::t_bd889511c5f370 179,185,188-190
+docs/Setup/java/testng.md
+  s_c3e47f5cf45a98::t_b59d67c7374d42 154,160,165-166
+"docs/Start here/quick-start-1.md"
+  s_c3e47f5cf45a98::t_3cb3ed3b05e8e1 23,27,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "83c19ea0fbc2c3377ccfd93b2429970a25b0b404",
+  "prompts": {},
+  "sessions": {
+    "s_c3e47f5cf45a98": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "504bcd79-2ecb-484d-8aa3-2456deafeac2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Manju R <cskmnrpt@gmail.com>"
+    }
+  }
+}
