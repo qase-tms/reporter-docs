@@ -1,0 +1,19 @@
+docs/Setup/configuration/connecting-to-qase.md
+  s_c3e47f5cf45a98::t_993674bb5034a3 82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "122e711fb24d689bce59c595c4e81db3068ae849",
+  "prompts": {},
+  "sessions": {
+    "s_c3e47f5cf45a98": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "504bcd79-2ecb-484d-8aa3-2456deafeac2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Manju R <cskmnrpt@gmail.com>"
+    }
+  }
+}
