@@ -79,7 +79,7 @@ Or as an environment variable:
 export QASE_TESTOPS_API_HOST=eu.qase.io
 ```
 
-The EU cluster does not need the `enterprise` flag. The Go reporter cannot reach the EU cluster yet because of a known bug that is being fixed.
+The EU cluster does not need the `enterprise` flag. The Go reporter supports the EU cluster from version 1.2.2.
 
 <br />
 
