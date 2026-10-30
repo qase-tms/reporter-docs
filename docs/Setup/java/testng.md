@@ -151,16 +151,18 @@ Now, let’s run the test by executing the following command:
 **Maven**:
 
 ```shell Terminal
-mvn clean test -DQASE_MODE=testops -DQASE_TESTOPS_PROJECT=<prj-code> -DQASE_TESTOPS_API_TOKEN=<app-token>
+mvn clean test -DQASE_MODE=testops -DQASE_TESTOPS_PROJECT=<prj-code> -DQASE_TESTOPS_API_TOKEN=<app-token> -DQASE_TESTOPS_API_HOST=qase.io
 ```
 
 **Gradle**
 
 ```shell Terminal
-gradle clean test -DQASE_MODE=testops -DQASE_TESTOPS_PROJECT=<prj-code> -DQASE_TESTOPS_API_TOKEN=<app-token>
+gradle clean test -DQASE_MODE=testops -DQASE_TESTOPS_PROJECT=<prj-code> -DQASE_TESTOPS_API_TOKEN=<app-token> -DQASE_TESTOPS_API_HOST=qase.io
 ```
 
 Please refer to this [article](https://help.qase.io/en/articles/9787250-how-do-i-find-my-project-code) for guidance on how to find your Project code in Qase.
+
+If your workspace is on the EU cluster (you open Qase at `app-eu.qase.io`), set `QASE_TESTOPS_API_HOST` to `eu.qase.io`. The default, `qase.io`, is the US cluster.
 
 In the above command, we’re setting the reporter’s mode with `QASE_MODE`.
 
